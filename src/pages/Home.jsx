@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Input } from '../components'
 
 const Home = (props) => {
-  return <div>Input</div>
+  return <div>Home Page</div>
 }
 
 Home.propTypes = {}

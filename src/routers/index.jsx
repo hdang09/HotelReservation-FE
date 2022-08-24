@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Home, Reservation, Rooms } from '../pages'
+import { Home, Reservation, Rooms, Cleaning, Settings } from '../pages'
 import Default from '../layout/Default'
 
 const privateRoutes = [
@@ -17,6 +17,16 @@ const privateRoutes = [
     name: 'Rooms',
     element: <Rooms />,
     path: '/rooms',
+  },
+  {
+    name: 'Cleaning',
+    element: <Cleaning />,
+    path: '/cleaning',
+  },
+  {
+    name: 'Settings',
+    element: <Settings />,
+    path: '/settings',
   },
 ]
 

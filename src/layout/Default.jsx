@@ -6,17 +6,12 @@ import { Sidebar, Header } from '../components'
 
 const DefaultLayout = ({ children }) => {
   const [open, setOpen] = useState(false)
-  const toggleSidebar = () => {
-    console.log('Clicked')
-    setOpen(!open)
-    console.log('Open: ', open)
-  }
   return (
     <>
       <div className="flex w-screen">
         <Sidebar open={open} className={clsx(open && '!block')} />
         <div className="ml-0 h-screen flex-1 items-start sm:ml-16 md:ml-60">
-          <Header toggleSidebar={toggleSidebar} />
+          <Header />
           <div className="p-5">{children}</div>
         </div>
       </div>
