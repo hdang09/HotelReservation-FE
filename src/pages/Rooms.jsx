@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
+import moment from 'moment'
+
 import * as actions from '../app/actions'
 
 const NUMS_OF_FLOOR = 8,
@@ -9,6 +11,7 @@ const NUMS_OF_FLOOR = 8,
 const Rooms = (props) => {
   const dispatch = useDispatch()
   const rooms = useSelector((state) => state.rooms.data)
+  console.log(rooms)
   const existedRooms = rooms.map((room) => room.roomNumber)
 
   let list = [],
@@ -18,6 +21,13 @@ const Rooms = (props) => {
   useEffect(() => {
     dispatch(actions.getRooms.getRoomsRequest())
   }, [dispatch])
+
+  const [currentRoom, setCurrentRoom] = useState(false)
+  const toggleShowRoomDetails = (roomNumber, isReserved) => {
+    if (isReserved) {
+      setCurrentRoom(roomNumber)
+    } else alert("You haven't booked this room yet")
+  }
 
   const renderRooms = () => {
     for (let room = 1; room <= NUMS_ROOMS_EACH_FLOOR; room++) {
@@ -29,6 +39,7 @@ const Rooms = (props) => {
           className={`min-w-8 h-auto ${
             isReserved ? 'bg-orange-500' : 'bg-white'
           } py-3 px-6 rounded-xl drop-shadow-lg cursor-pointer hover:opacity-60`}
+          onClick={() => toggleShowRoomDetails(roomNumber, isReserved)}
         >
           <h2 className="font-bold text-2xl">Room {roomNumber}</h2>
           <h3 className="text-lg">{isReserved ? 'Reserved' : 'Available'}</h3>
@@ -54,7 +65,33 @@ const Rooms = (props) => {
     return list
   }
 
-  return <div>{renderFloors()}</div>
+  return (
+    <>
+      <div>{renderFloors()}</div>
+      {currentRoom && (
+        <div className="w-screen h-screen fixed inset-0 z-10 flex justify-center items-center">
+          <div className="absolute w-screen h-screen bg-black opacity-60 z-12"></div>
+          <div className="absolute bg-white m-32 p-8 z-14 rounded-lg drop-shadow-lg">
+            <button onClick={() => setCurrentRoom(null)}>Close</button>
+            {rooms.map(
+              (room) =>
+                room.roomNumber === currentRoom && (
+                  <div key={room._id}>
+                    <p>Room: {room.roomNumber}</p>
+                    <p>Fullname: {room.fullname}</p>
+                    <p>ID Card: {room.idCard}</p>
+                    <p>Phone: {room.phone}</p>
+                    <p>E-mail: {room.email}</p>
+                    <p>Check-in: {moment(room.checkIn).format('DD/MM/YYYY 12:00')}</p>
+                    <p>Check-out: {moment(room.checkOut).format('DD/MM/YYYY 12:00')}</p>
+                  </div>
+                ),
+            )}
+          </div>
+        </div>
+      )}
+    </>
+  )
 }
 
 Rooms.propTypes = {}
