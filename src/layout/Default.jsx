@@ -12,7 +12,7 @@ const DefaultLayout = ({ children }) => {
         <Sidebar open={open} className={clsx(open && '!block')} />
         <div className="ml-0 h-screen flex-1 items-start sm:ml-16 md:ml-60">
           <Header />
-          <div className="p-5">{children}</div>
+          <div className="w-full h-full p-5 flex-1">{children}</div>
         </div>
       </div>
     </>

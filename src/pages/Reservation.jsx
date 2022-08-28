@@ -71,7 +71,7 @@ const Reservation = (props) => {
   return (
     <>
       <div>
-        <form className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" onSubmit={handleSubmit(onSubmit)}>
+        <form className="grid grid-cols-1 lg:grid-cols-3" onSubmit={handleSubmit(onSubmit)}>
           <div>
             <Input
               selectRooms
@@ -159,7 +159,7 @@ const Reservation = (props) => {
             />
           </div>
 
-          <div className="py-3 px-12">
+          <div className="py-3 px-6 sm:px-12">
             <div className="bg-white rounded-lg drop-shadow-lg">
               <header className="bg-gray-200 text-xl px-4 py-2 font-bold">Your Reservation</header>
               <div className="px-6 py-4">
