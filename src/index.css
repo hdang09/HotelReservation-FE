@@ -17,6 +17,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --primary-color: orange;
 }
 
 a {
@@ -29,14 +31,16 @@ a:hover {
 }
 
 body {
+  /* background-size: cover; */
   box-sizing: border-box;
   scroll-behavior: smooth;
-  background-color: #eef0f4;
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  min-height: 100%;
+  /* background-image: url('../src/assets/7480152.png'); */
+  /* backdrop-filter: blur(10px); */
 }
 
 h1 {
@@ -66,7 +70,7 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    background-color: #eef0f4;
   }
   a:hover {
     color: #747bff;
@@ -96,5 +100,19 @@ button:focus-visible {
 /* Selection */
 ::selection {
   color: #000;
-  background: orange;
+  background: var(--primary-color);
+}
+
+/* Override CSS */
+
+.rdrSelected,
+.rdrInRange,
+.rdrStartEdge,
+.rdrEndEdge,
+.rdrDayToday .rdrDayNumber span:after {
+  background-color: var(--primary-color);
+}
+
+.rdrDateDisplayItemActive {
+  border-color: var(--primary-color);
 }

@@ -64,7 +64,7 @@ const Input = forwardRef(
         {selectRooms ? (
           <select
             id={label}
-            className={`w-full max-w-[20rem] drop-shadow-md py-[0.6rem] px-4 rounded-lg focus:outline-[orange] ${propClassName}`}
+            className={`w-full max-w-[20rem] drop-shadow-md py-[0.6rem] px-4 rounded-lg focus:outline-primary ${propClassName}`}
             ref={ref}
             {...props}
             defaultValue={'DEFAULT'}
@@ -74,7 +74,7 @@ const Input = forwardRef(
         ) : (
           <input
             id={label}
-            className={`w-full max-w-[20rem] drop-shadow-md py-[0.6rem] px-4 rounded-lg focus:outline-[orange] ${propClassName}`}
+            className={`w-full max-w-[20rem] drop-shadow-md py-[0.6rem] px-4 rounded-lg focus:outline-primary ${propClassName}`}
             type={type}
             placeholder={placeholder}
             ref={ref}

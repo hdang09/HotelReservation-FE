@@ -11,9 +11,9 @@ const SIDEBAR_LIST = [
   { name: 'Home', icon: <AiOutlineHome />, to: '/' },
   { name: 'Reservation', icon: <MdHotelClass />, to: '/reservation' },
   { name: 'Rooms', icon: <AiOutlineAppstore />, to: '/rooms' },
-  { name: 'Cleaning', icon: <MdOutlineCleaningServices />, to: '/cleaning' },
+  // { name: 'Cleaning', icon: <MdOutlineCleaningServices />, to: '/cleaning' },
   { name: 'Settings', icon: <BsGear />, to: '/settings' },
-  // { name: 'Log out', icon: <MdOutlineLogout />, to: '/logout' },
+  { name: 'Log out', icon: <MdOutlineLogout />, to: '/logout' },
 ]
 
 const Sidebar = ({ className: propClassName }) => {
@@ -28,11 +28,7 @@ const Sidebar = ({ className: propClassName }) => {
 
       <ul className="flex justify-around sm:block">
         {SIDEBAR_LIST.map((item) => (
-          <li
-            title={item.name}
-            key={item.name}
-            className="sm:block h-12 my-2 hover:bg-gray-100 rounded-lg"
-          >
+          <li title={item.name} key={item.name} className="sm:block h-12 my-2 hover:bg-gray-100 rounded-lg">
             <Link
               to={item.to}
               className="flex px-4 sm:pl-6 md:pl-7 items-center h-full text-base text-gray-500 "

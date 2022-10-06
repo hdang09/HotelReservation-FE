@@ -43,7 +43,7 @@ const Rooms = (props) => {
         <div
           key={roomNumber}
           className={`min-w-8 h-auto ${
-            isReserved ? 'bg-orange-500' : 'bg-white'
+            isReserved ? 'bg-primary' : 'bg-white'
           } py-3 px-6 rounded-xl drop-shadow-lg cursor-pointer hover:opacity-60`}
           onClick={() => toggleShowRoomDetails(roomNumber, isReserved)}
         >
@@ -76,7 +76,7 @@ const Rooms = (props) => {
       <div className="w-full h-full">
         {isLoading ? (
           <div className="w-full h-full flex justify-center items-center mt-[-50px]">
-            <PacmanLoader color="orange" />
+            <PacmanLoader color="var(--primary-color)" />
           </div>
         ) : (
           renderFloors()
@@ -97,7 +97,7 @@ const Rooms = (props) => {
                     <h1 className="font-bold text-4xl mb-4">Room: {room.roomNumber}</h1>
                     {/* Fullname */}
                     <div className="flex items-center my-2">
-                      <div className="w-12 h-12 bg-orange-400 rounded-lg flex justify-center items-center text-2xl mr-3">
+                      <div className="w-12 h-12 bg-primary rounded-lg flex justify-center items-center text-2xl mr-3">
                         <FaSignature />
                       </div>
                       <div className="text-xl">
@@ -108,7 +108,7 @@ const Rooms = (props) => {
 
                     {/* ID Card */}
                     <div className="flex items-center my-2">
-                      <div className="w-12 h-12 bg-orange-400 rounded-lg flex justify-center items-center text-2xl mr-3">
+                      <div className="w-12 h-12 bg-primary rounded-lg flex justify-center items-center text-2xl mr-3">
                         <HiOutlineIdentification />
                       </div>
                       <div className="text-xl">
@@ -119,7 +119,7 @@ const Rooms = (props) => {
 
                     {/* Phone */}
                     <div className="flex items-center my-2">
-                      <div className="w-12 h-12 bg-orange-400 rounded-lg flex justify-center items-center text-2xl mr-3">
+                      <div className="w-12 h-12 bg-primary rounded-lg flex justify-center items-center text-2xl mr-3">
                         <BsTelephone />
                       </div>
                       <div className="text-xl">
@@ -130,7 +130,7 @@ const Rooms = (props) => {
 
                     {/* E-mail */}
                     <div className="flex items-center my-2">
-                      <div className="w-12 h-12 bg-orange-400 rounded-lg flex justify-center items-center text-2xl mr-3">
+                      <div className="w-12 h-12 bg-primary rounded-lg flex justify-center items-center text-2xl mr-3">
                         <HiOutlineMail />
                       </div>
                       <div className="text-xl">
@@ -141,7 +141,7 @@ const Rooms = (props) => {
 
                     {/* Check-in */}
                     <div className="flex items-center my-2">
-                      <div className="w-12 h-12 bg-orange-400 rounded-lg flex justify-center items-center text-2xl mr-3">
+                      <div className="w-12 h-12 bg-primary rounded-lg flex justify-center items-center text-2xl mr-3">
                         <FiLogIn />
                       </div>
                       <div className="text-xl">
@@ -152,12 +152,23 @@ const Rooms = (props) => {
 
                     {/* Check-out */}
                     <div className="flex items-center my-2">
-                      <div className="w-12 h-12 bg-orange-400 rounded-lg flex justify-center items-center text-2xl mr-3">
+                      <div className="w-12 h-12 bg-primary rounded-lg flex justify-center items-center text-2xl mr-3">
                         <FiLogOut />
                       </div>
                       <div className="text-xl">
                         <p>Check-out</p>
                         <p className="font-bold">{moment(room.checkOut).format('ddd, DD/MM/YYYY 12:00 A')}</p>
+                      </div>
+                    </div>
+
+                    {/* Status */}
+                    <div className="flex items-center my-2">
+                      <div className="w-12 h-12 bg-primary rounded-lg flex justify-center items-center text-2xl mr-3">
+                        <FiLogOut />
+                      </div>
+                      <div className="text-xl">
+                        <p>Status</p>
+                        <p className="font-bold">{room.status}</p>
                       </div>
                     </div>
                   </div>

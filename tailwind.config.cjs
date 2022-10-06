@@ -5,10 +5,12 @@ module.exports = {
       colors: {
         modal: '#0a0409',
         box: '#EFEEF1',
+        primary: 'var(--primary-color)',
+        current: 'currentColor',
       },
-      //   backgroundImage: {
-      //     home: 'url("./assets/img/bg.png")',
-      //   },
+      // backgroundImage: {
+      //   home: 'url("./assets/img/bg.png")',
+      // },
     },
   },
   plugins: [],
