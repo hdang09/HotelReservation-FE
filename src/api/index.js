@@ -1,7 +1,6 @@
 import axios from 'axios'
 
-const URL = 'https://hotel-management-hdang09.herokuapp.com'
-// const URL = 'http://localhost:5000'
+const URL = import.meta.env.VITE_API_URL
 
 export const fetchRooms = () => axios.get(`${URL}/rooms`)
 export const bookRoom = (payload) => axios.post(`${URL}/rooms`, payload)

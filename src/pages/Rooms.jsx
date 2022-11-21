@@ -14,7 +14,7 @@ import { useCallback } from 'react'
 const NUMS_OF_FLOOR = 8,
   NUMS_ROOMS_EACH_FLOOR = 12
 
-const Rooms = (props) => {
+const Rooms = () => {
   const dispatch = useDispatch()
   const rooms = useSelector((state) => state.rooms.data)
   let isLoading = useSelector((state) => state.rooms.isLoading)

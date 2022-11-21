@@ -1,6 +1,6 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Home, Reservation, Rooms, Cleaning, Settings } from '../pages'
 import Default from '../layout/Default'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 const privateRoutes = [
   {
@@ -41,11 +41,7 @@ const RouterComponent = () => (
     </Routes>
     <Routes>
       {privateRoutes.map((route) => (
-        <Route
-          key={route.name}
-          element={<Default>{route.element}</Default>}
-          path={route.path}
-        ></Route>
+        <Route key={route.name} element={<Default>{route.element}</Default>} path={route.path}></Route>
       ))}
     </Routes>
   </Router>

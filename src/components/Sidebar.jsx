@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { AiOutlineHome, AiOutlineAppstore } from 'react-icons/ai'
 import { MdHotelClass, MdOutlineCleaningServices, MdOutlineLogout } from 'react-icons/md'
 import { BsGear } from 'react-icons/bs'
@@ -29,14 +29,14 @@ const Sidebar = ({ className: propClassName }) => {
       <ul className="flex justify-around sm:block">
         {SIDEBAR_LIST.map((item) => (
           <li title={item.name} key={item.name} className="sm:block h-12 my-2 hover:bg-gray-100 rounded-lg">
-            <Link
+            <NavLink
               to={item.to}
               className="flex px-4 sm:pl-6 md:pl-7 items-center h-full text-base text-gray-500 "
               title={item.name}
             >
               <span className="text-xl text-gray-500">{item.icon}</span>
               <span className="hidden text-base text-gray-500 ml-4 md:block">{item.name}</span>
-            </Link>
+            </NavLink>
           </li>
         ))}
       </ul>
