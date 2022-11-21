@@ -1,7 +1,8 @@
 import React, { forwardRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
-import * as actions from '../app/actions'
+import { getRoomsAsync } from '../app/roomsSlice'
+// import * as actions from '../app/actions'
 
 const NUMS_OF_FLOOR = 8,
   NUMS_ROOMS_EACH_FLOOR = 12
@@ -20,13 +21,8 @@ const Input = forwardRef(
     },
     ref,
   ) => {
-    const dispatch = useDispatch()
-    const rooms = useSelector((state) => state.rooms.data)
-    const existedRooms = rooms.map((room) => room.roomNumber)
-
-    useEffect(() => {
-      dispatch(actions.getRooms.getRoomsRequest())
-    }, [dispatch])
+    const rooms = useSelector((state) => state.rooms)
+    const existedRooms = rooms?.map((room) => room.roomNumber)
 
     const renderRoomsOption = () => {
       let element = []
@@ -43,7 +39,7 @@ const Input = forwardRef(
         )
         for (let j = 1; j <= NUMS_ROOMS_EACH_FLOOR; j++) {
           let roomNumber = i * 100 + j
-          const isReserved = existedRooms.includes(roomNumber)
+          const isReserved = existedRooms?.includes(roomNumber)
           element.push(
             <option key={roomNumber} value={roomNumber} disabled={isReserved} className="text-center">
               {roomNumber}

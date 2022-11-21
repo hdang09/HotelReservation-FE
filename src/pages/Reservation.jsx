@@ -1,20 +1,22 @@
-import React, { useCallback, useState } from 'react'
-import PropTypes from 'prop-types'
+import React, { useCallback, useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useForm, Controller } from 'react-hook-form'
 import { DateRange } from 'react-date-range'
 import moment from 'moment'
 
-import * as actions from '../app/actions'
-import { getRooms, bookRoom } from '../app/actions'
+// import * as actions from '../app/actions'
+// import { getRooms, bookRoom } from '../app/actions'
 import { Input } from '../components'
 
 import 'react-date-range/dist/styles.css' // main style file
 import 'react-date-range/dist/theme/default.css' // theme css file
+import { bookRoomAsync, getRoomsAsync } from '../app/roomsSlice'
 
-const Reservation = (props) => {
+const Reservation = () => {
   const dispatch = useDispatch()
-  dispatch(getRooms.getRoomsRequest())
+  useEffect(() => {
+    dispatch(getRoomsAsync())
+  }, [dispatch])
 
   const { control, register, handleSubmit } = useForm()
 
@@ -41,7 +43,9 @@ const Reservation = (props) => {
 
   const onSubmit = useCallback(
     (data) => {
-      dispatch(bookRoom.bookRoomRequest(roomData))
+      console.log(roomData)
+      dispatch(bookRoomAsync(roomData))
+      alert('Booked successfully!')
       setRoomData({
         roomNumber: undefined,
         fullname: '',

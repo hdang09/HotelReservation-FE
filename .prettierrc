@@ -1,12 +1,12 @@
 {
-  "printWidth": 120,
+  "printWidth": 100,
   "tabWidth": 2,
   "bracketSpacing": true,
-  "trailingComma": "all",
+  "trailingComma": "es5",
   "jsxBracketSameLine": false,
-  "arrowParens": "always",
   "singleQuote": true,
-  "semi": false,
+  "arrowParens": "always",
+  "semi": true,
   "endOfLine": "auto",
   "importOrder": [
     "^react$",
@@ -15,5 +15,6 @@
     "(^[src/]*$|^[./]|^[../])",
     ""
   ],
-  "importOrderSeparation": false
+  "importOrderSeparation": true,
+  "experimentalBabelParserPluginsList": ["js", "jsx"]
 }
