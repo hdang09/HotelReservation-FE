@@ -1,24 +1,24 @@
-import React, { useCallback, useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { useForm, Controller } from 'react-hook-form'
-import { DateRange } from 'react-date-range'
-import moment from 'moment'
+import React, { useCallback, useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useForm, Controller } from 'react-hook-form';
+import { DateRange } from 'react-date-range';
+import moment from 'moment';
 
 // import * as actions from '../app/actions'
 // import { getRooms, bookRoom } from '../app/actions'
-import { Input } from '../components'
+import { Input } from '../components';
 
-import 'react-date-range/dist/styles.css' // main style file
-import 'react-date-range/dist/theme/default.css' // theme css file
-import { bookRoomAsync, getRoomsAsync } from '../app/roomsSlice'
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
+import { bookRoomAsync, getRoomsAsync } from '../app/roomsSlice';
 
 const Reservation = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getRoomsAsync())
-  }, [dispatch])
+    dispatch(getRoomsAsync());
+  }, [dispatch]);
 
-  const { control, register, handleSubmit } = useForm()
+  const { control, register, handleSubmit } = useForm();
 
   const [roomData, setRoomData] = useState({
     roomNumber: undefined,
@@ -32,37 +32,37 @@ const Reservation = () => {
     checkIn: undefined,
     checkOut: undefined,
     email: '',
-  })
+  });
   const [dateRanges, setDateRanges] = useState([
     {
       startDate: new Date(),
       endDate: null,
       key: 'selection',
     },
-  ])
+  ]);
 
   const onSubmit = useCallback(
     (data) => {
-      console.log(roomData)
-      dispatch(bookRoomAsync(roomData))
-      alert('Booked successfully!')
-      setRoomData({
-        roomNumber: undefined,
-        fullname: '',
-        idCard: '',
-        phone: '',
-        services: {
-          motorbikeRental: false,
-          parking: false,
-        },
-        checkIn: undefined,
-        checkOut: undefined,
-        email: '',
-        status: '',
-      })
+      console.log(roomData);
+      dispatch(bookRoomAsync(roomData));
+      alert('Booked successfully!');
+      // setRoomData({
+      //   roomNumber: undefined,
+      //   fullname: '',
+      //   idCard: '',
+      //   phone: '',
+      //   services: {
+      //     motorbikeRental: false,
+      //     parking: false,
+      //   },
+      //   checkIn: undefined,
+      //   checkOut: undefined,
+      //   email: '',
+      //   status: '',
+      // })
     },
-    [dispatch, roomData],
-  )
+    [dispatch, roomData]
+  );
 
   const BILL = [
     { name: 'Fullname', details: roomData.fullname },
@@ -72,7 +72,7 @@ const Reservation = () => {
     { name: 'Check-in', details: roomData.checkIn },
     { name: 'Check-out', details: roomData.checkOut },
     { name: 'Status', details: roomData.status },
-  ]
+  ];
 
   const RenderServices = () => (
     <div>
@@ -95,32 +95,42 @@ const Reservation = () => {
           type="checkbox"
           {...register('motorbikeRental')}
           value={roomData.motorbikeRental}
-          onChange={(e) => setRoomData({ ...roomData, motorbikeRental: { motorbikeRental: e.target.checked } })}
+          onChange={(e) =>
+            setRoomData({ ...roomData, motorbikeRental: { motorbikeRental: e.target.checked } })
+          }
         />
         <label htmlFor="motorbike-rental" className="pl-2">
           Motorbike for rent (8$/month)
         </label>
       </div>
     </div>
-  )
+  );
 
   const RenderStatus = () => (
     <div>
       <h2>Status: </h2>
       <div className="m-2">
-        <input id="reserved" type="radio" onChange={() => setRoomData({ ...roomData, status: 'Reserved' })} />
+        <input
+          id="reserved"
+          type="radio"
+          onChange={() => setRoomData({ ...roomData, status: 'Reserved' })}
+        />
         <label htmlFor="reserved" className="pl-2">
           Reserved
         </label>
       </div>
       <div className="m-2">
-        <input id="checked-in" type="radio" onChange={() => setRoomData({ ...roomData, status: 'Checked-in' })} />
+        <input
+          id="checked-in"
+          type="radio"
+          onChange={() => setRoomData({ ...roomData, status: 'Checked-in' })}
+        />
         <label htmlFor="checked-in" className="pl-2">
           Checked-in
         </label>
       </div>
     </div>
-  )
+  );
 
   const PreviewReservation = () => (
     <div className="bg-white rounded-lg drop-shadow-lg">
@@ -150,7 +160,7 @@ const Reservation = () => {
                 <span className="float-right" key={key}>
                   {key}
                 </span>
-              ),
+              )
           )}
         </div>
       </div>
@@ -164,7 +174,7 @@ const Reservation = () => {
         />
       </footer>
     </div>
-  )
+  );
 
   return (
     <>
@@ -221,9 +231,13 @@ const Reservation = () => {
                   {...field}
                   editableDateInputs={true}
                   onChange={(item) => {
-                    setRoomData({ ...roomData, checkIn: item.selection.startDate, checkOut: item.selection.endDate })
-                    setDateRanges([item.selection])
-                    field.onChange(item)
+                    setRoomData({
+                      ...roomData,
+                      checkIn: item.selection.startDate,
+                      checkOut: item.selection.endDate,
+                    });
+                    setDateRanges([item.selection]);
+                    field.onChange(item);
                   }}
                   moveRangeOnFirstSelection={false}
                   ranges={dateRanges}
@@ -238,9 +252,9 @@ const Reservation = () => {
         </form>
       </div>
     </>
-  )
-}
+  );
+};
 
-Reservation.propTypes = {}
+Reservation.propTypes = {};
 
-export default Reservation
+export default Reservation;

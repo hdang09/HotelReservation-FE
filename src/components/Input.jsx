@@ -1,11 +1,11 @@
-import React, { forwardRef, useEffect } from 'react'
-import PropTypes from 'prop-types'
-import { useDispatch, useSelector } from 'react-redux'
-import { getRoomsAsync } from '../app/roomsSlice'
+import React, { forwardRef, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { getRoomsAsync } from '../app/roomsSlice';
 // import * as actions from '../app/actions'
 
 const NUMS_OF_FLOOR = 8,
-  NUMS_ROOMS_EACH_FLOOR = 12
+  NUMS_ROOMS_EACH_FLOOR = 12;
 
 const Input = forwardRef(
   (
@@ -19,36 +19,37 @@ const Input = forwardRef(
       selectRooms = false,
       ...props
     },
-    ref,
+    ref
   ) => {
-    const rooms = useSelector((state) => state.rooms)
-    const existedRooms = rooms?.map((room) => room.roomNumber)
+    const rooms = useSelector((state) => state.rooms);
+    const existedRooms = rooms?.map((room) => room.roomNumber);
 
     const renderRoomsOption = () => {
-      let element = []
+      let element = [];
       element.push(
         <option key="placeholder" value="DEFAULT" disabled hidden>
           Select your room
-        </option>,
-      )
+        </option>
+      );
       for (let i = 1; i <= NUMS_OF_FLOOR; i++) {
         element.push(
           <option key={i} disabled value="" className="font-bold py-3">
             Floor {i}
-          </option>,
-        )
+          </option>
+        );
         for (let j = 1; j <= NUMS_ROOMS_EACH_FLOOR; j++) {
-          let roomNumber = i * 100 + j
-          const isReserved = existedRooms?.includes(roomNumber)
+          let roomNumber = i * 100 + j;
+          const isReserved = existedRooms?.includes(roomNumber);
           element.push(
-            <option key={roomNumber} value={roomNumber} disabled={isReserved} className="text-center">
+            <option key={roomNumber} value={roomNumber} className="text-center">
+              {/* //disabled={isReserved} */}
               {roomNumber}
-            </option>,
-          )
+            </option>
+          );
         }
       }
-      return element
-    }
+      return element;
+    };
 
     return (
       <div className="p-2 ">
@@ -79,10 +80,10 @@ const Input = forwardRef(
         )}
         {/* <p className="text-red">Error Message: Hehe</p> */}
       </div>
-    )
-  },
-)
+    );
+  }
+);
 
-Input.propTypes = {}
+Input.propTypes = {};
 
-export default Input
+export default Input;

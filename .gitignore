@@ -26,6 +26,3 @@ dist-ssr
 .history
 .env.production
 .env.development
-
-src/app
-src/api
