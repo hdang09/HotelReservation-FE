@@ -23,7 +23,7 @@ const Login = () => {
           <h2>Sign in to Hotel Management</h2>
           <div className="bg-black h-0.5 w-4/12 my-8"></div>
           <GoogleLogin
-            clientId={CLIENT_ID}
+            client_Id={CLIENT_ID}
             buttonText="Continue with Google"
             onSuccess={onSuccess}
             onFailure={onFailure}
