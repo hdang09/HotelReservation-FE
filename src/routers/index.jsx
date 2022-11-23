@@ -1,6 +1,14 @@
-import { Home, Reservation, Rooms, Cleaning, Settings } from '../pages'
-import Default from '../layout/Default'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Home, Reservation, Rooms, Cleaning, Settings, Calendar, Login } from '../pages';
+import Default from '../layout/Default';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+const publicRoutes = [
+  {
+    name: 'Login',
+    element: <Login />,
+    path: '/login',
+  },
+];
 
 const privateRoutes = [
   {
@@ -28,9 +36,12 @@ const privateRoutes = [
     element: <Settings />,
     path: '/settings',
   },
-]
-
-const publicRoutes = [{ name: 'Login' }]
+  {
+    name: 'Calendar',
+    element: <Calendar />,
+    path: '/calendar',
+  },
+];
 
 const RouterComponent = () => (
   <Router>
@@ -41,11 +52,15 @@ const RouterComponent = () => (
     </Routes>
     <Routes>
       {privateRoutes.map((route) => (
-        <Route key={route.name} element={<Default>{route.element}</Default>} path={route.path}></Route>
+        <Route
+          key={route.name}
+          element={<Default>{route.element}</Default>}
+          path={route.path}
+        ></Route>
       ))}
     </Routes>
   </Router>
-)
+);
 
-export { publicRoutes, privateRoutes }
-export default RouterComponent
+export { publicRoutes, privateRoutes };
+export default RouterComponent;

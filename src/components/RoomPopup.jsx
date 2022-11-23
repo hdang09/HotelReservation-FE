@@ -1,12 +1,24 @@
-import React from 'react'
+import React from 'react';
 
-import { FaSignature } from 'react-icons/fa'
-import { HiOutlineIdentification, HiOutlineMail } from 'react-icons/hi'
-import { BsTelephone } from 'react-icons/bs'
-import { FiLogIn, FiLogOut } from 'react-icons/fi'
-import moment from 'moment'
+import { FaSignature } from 'react-icons/fa';
+import { HiOutlineIdentification, HiOutlineMail } from 'react-icons/hi';
+import { BsTelephone } from 'react-icons/bs';
+import { FiLogIn, FiLogOut } from 'react-icons/fi';
+import moment from 'moment';
+import { updateStatus } from '../utils/productAPI';
 
 const RoomPopup = ({ room = {}, handleClose = () => {} }) => {
+  const handleEdit = () => {};
+
+  const handleChangeStatus = async (status) => {
+    try {
+      const res = await updateStatus(room._id, status);
+      handleClose();
+      console.log(res);
+    } catch (err) {
+      console.error(err);
+    }
+  };
   return (
     <div className="w-screen h-screen fixed inset-0 z-10 flex justify-center items-center">
       <div className="absolute w-screen h-screen bg-black opacity-60 z-12"></div>
@@ -92,10 +104,14 @@ const RoomPopup = ({ room = {}, handleClose = () => {} }) => {
               <p className="font-bold">{room.status}</p>
             </div>
           </div>
+          <button onClick={handleEdit}>Edit</button>
+          <button onClick={() => handleChangeStatus('Checked-in')}>Checked-in</button>
+          <button onClick={() => handleChangeStatus('Checked-out')}>Checked-out</button>
+          <button onClick={() => handleChangeStatus('Canceled')}>Remove</button>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default RoomPopup
+export default RoomPopup;

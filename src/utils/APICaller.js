@@ -1,5 +1,5 @@
-import axios from 'axios'
-import { API_URL } from '../config'
+import axios from 'axios';
+import { API_URL } from '../config';
 
 export const request = (endpoint, method, headers = {}, params = {}, body = {}) => {
   return axios({
@@ -8,21 +8,21 @@ export const request = (endpoint, method, headers = {}, params = {}, body = {}) 
     headers,
     params,
     data: body,
-  })
-}
+  });
+};
 
 export const get = (endpoint, params = {}, headers = {}) => {
-  return request(endpoint, 'GET', headers, params)
-}
+  return request(endpoint, 'GET', headers, params);
+};
 
 export const post = (endpoint, body = {}, params = {}, headers = {}) => {
-  return request(endpoint, 'POST', headers, params, body)
-}
+  return request(endpoint, 'POST', headers, params, body);
+};
 
 export const put = (endpoint, body = {}, params = {}, headers = {}) => {
-  return request(endpoint, 'PUT', headers, params, body)
-}
+  return request(endpoint, 'PUT', headers, params, body);
+};
 
 export const remove = (endpoint, body = {}, params = {}, headers = {}) => {
-  return request(endpoint, 'DELETE', headers, params, body)
-}
+  return request(endpoint, 'DELETE', headers, params, body);
+};

@@ -44,7 +44,13 @@ const Reservation = () => {
   const onSubmit = useCallback(
     (data) => {
       console.log(roomData);
-      dispatch(bookRoomAsync(roomData));
+      dispatch(
+        bookRoomAsync({
+          ...roomData,
+          checkIn: new Date(roomData.checkIn.getTime() + 86400000),
+          checkOut: new Date(roomData.checkOut.getTime() + 86400000),
+        })
+      );
       alert('Booked successfully!');
       // setRoomData({
       //   roomNumber: undefined,

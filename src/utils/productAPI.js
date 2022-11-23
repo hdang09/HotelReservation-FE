@@ -1,17 +1,39 @@
-import { post, get, put } from './apiCaller'
+import { post, get, put, remove } from './apiCaller';
 
-// Admin API
+// Rooms
 export const getAllRoom = () => {
-  const url = '/rooms'
-  return get(url)
-}
+  const url = '/rooms';
+  return get(url);
+};
 
 export const bookRoom = (room = {}) => {
-  const url = '/rooms'
-  return post(url, {}, {}, room)
-}
+  const url = '/rooms';
+  return post(url, room);
+};
+
+export const getSpecificRoom = (roomNumber = '') => {
+  const url = '/rooms/specific';
+  return post(url, { roomNumber });
+};
 
 export const updateRoom = (room = {}) => {
-  const url = '/rooms/update'
-  return put(url, {}, {}, room)
-}
+  const url = '/rooms/update';
+  return put(url, room);
+};
+
+export const updateStatus = (id, status) => {
+  const url = '/rooms/update-status';
+  console.log(id, status);
+  return put(url, { id, status });
+};
+
+export const deleteRoom = (id) => {
+  const url = '/rooms/delete';
+  return remove(url, {}, {}, { id });
+};
+
+// Report
+export const getReport = () => {
+  const url = '/rooms/report';
+  return get(url);
+};

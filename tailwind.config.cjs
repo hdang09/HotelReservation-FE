@@ -6,6 +6,7 @@ module.exports = {
         modal: '#0a0409',
         box: '#EFEEF1',
         primary: 'var(--primary-color)',
+        fade: 'var(--fade-primary-color)',
         current: 'currentColor',
       },
       // backgroundImage: {
@@ -14,4 +15,4 @@ module.exports = {
     },
   },
   plugins: [],
-}
+};

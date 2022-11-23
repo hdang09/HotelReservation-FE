@@ -19,6 +19,7 @@ export const bookRoomAsync = createAsyncThunk('rooms/bookRoomAsync', async (payl
       body: JSON.stringify(payload),
     });
     console.log(res);
+    console.log(res.message);
   } catch (e) {
     console.error(e);
   }
@@ -48,6 +49,21 @@ export const deleteRoomAsync = createAsyncThunk('rooms/deleteRoomAsync', async (
   await fetch(`${API_URL}/rooms/${payload.id}`, {
     method: 'DELETE',
   });
+});
+
+export const getReportAsync = createAsyncThunk('rooms/getReportAsync', async (payload) => {
+  try {
+    const res = await fetch(`${API_URL}/rooms`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ status: payload }),
+    });
+    console.log(res);
+  } catch (e) {
+    console.error(e);
+  }
 });
 
 export const roomSlice = createSlice({
