@@ -33,7 +33,7 @@ const Home = () => {
               <p className="text-gray-400">Reserved Rooms</p>
               <h2 className="text-3xl text-black mb-4 font-semibold">{report.reserved.total}</h2>
               <p className="text-sm">
-                {report.reserved.current} cancelled rooms{' '}
+                {report.reserved.current} reserved rooms{' '}
                 <span className="text-gray-400">today</span>
               </p>
             </div>
@@ -61,7 +61,68 @@ const Home = () => {
           </div>
         </div>
       )}
-      <div></div>
+
+      <h1 className="text-2xl font-bold mt-10 mb-6">Today Availability</h1>
+
+      <div className="w-full bg-white p-6 rounded-lg drop-shadow-lg">
+        <table id="student-info" className="w-full">
+          <tr>
+            <th className="py-4 ">Room</th>
+            <th className="py-4">Floor 1</th>
+            <th className="py-4">Floor 2</th>
+            <th className="py-4">Floor 3</th>
+            <th className="py-4">Floor 4</th>
+            <th className="py-4">Floor 5</th>
+            <th className="py-4">Floor 6</th>
+            <th className="py-4">Floor 7</th>
+            <th className="py-4">Floor 8</th>
+          </tr>
+          <tr className="bg-gray-100 rounded-lg">
+            <td>Single Room</td>
+            <td>6</td>
+            <td>6</td>
+            <td>6</td>
+            <td>5</td>
+            <td>5</td>
+            <td>5</td>
+            <td>5</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <td>Double Room</td>
+            <td>6</td>
+            <td>6</td>
+            <td>6</td>
+            <td>5</td>
+            <td>5</td>
+            <td>5</td>
+            <td>5</td>
+            <td>5</td>
+          </tr>
+          <tr className="bg-gray-100 rounded-lg">
+            <td>Studio Room</td>
+            <td>6</td>
+            <td>6</td>
+            <td>6</td>
+            <td>5</td>
+            <td>5</td>
+            <td>5</td>
+            <td>5</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <td>Deluxe Room</td>
+            <td>6</td>
+            <td>6</td>
+            <td>6</td>
+            <td>5</td>
+            <td>5</td>
+            <td>5</td>
+            <td>5</td>
+            <td>5</td>
+          </tr>
+        </table>
+      </div>
     </>
   );
 };

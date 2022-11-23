@@ -6,10 +6,9 @@ import { signOut } from '../app/authSlice';
 
 const Logout = () => {
   const dispatch = useDispatch();
+
   const onLogoutSuccess = (response) => {
-    localStorage.removeItem('token');
-    dispatch(signOut);
-    window.location = '/login';
+    dispatch(signOut());
   };
   return (
     <GoogleLogout

@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { PacmanLoader } from 'react-spinners';
 import { getRoomsAsync } from '../app/roomsSlice';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useCallback } from 'react';
-import Calendar from './Calendar';
 
 const NUMS_OF_FLOOR = 8,
   NUMS_ROOMS_EACH_FLOOR = 12;
 
 const Rooms = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const rooms = useSelector((state) => state.rooms);
   const existedRooms = rooms?.map((room) => room.roomNumber);
 
@@ -31,7 +31,7 @@ const Rooms = () => {
         <div
           key={roomNumber}
           className={`min-w-8 h-auto bg-white py-3 px-6 rounded-xl drop-shadow-lg cursor-pointer hover:opacity-60`}
-          onClick={() => (window.location = `/calendar?room=${roomNumber}`)}
+          onClick={() => navigate(`/calendar?room=${roomNumber}`)}
         >
           <h2 className="font-bold text-2xl">Room {roomNumber}</h2>
           <h3 className="text-lg">{isReserved ? 'Reserved' : 'Available'}</h3>

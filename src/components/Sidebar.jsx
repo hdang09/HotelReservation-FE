@@ -8,9 +8,17 @@ import { BsGear, BsGearFill } from 'react-icons/bs';
 
 import logo from '../assets/logo.png';
 import Logout from './Logout';
+import { useDispatch } from 'react-redux';
+import { signOut } from '../app/authSlice';
 
 const Sidebar = ({ className: propClassName }) => {
-  const activeSidebarClassName = 'border-r-4 border-primary bg-fade';
+  const dispatch = useDispatch();
+
+  const activeSidebarClassName = 'sm:border-r-4 border-primary bg-fade';
+
+  const handleLogout = () => {
+    dispatch(signOut());
+  };
 
   const SIDEBAR_LIST = [
     { name: 'Home', icon: <AiOutlineHome />, activeIcon: <AiFillHome />, to: '/' },
@@ -23,12 +31,18 @@ const Sidebar = ({ className: propClassName }) => {
     { name: 'Rooms', icon: <AiOutlineAppstore />, activeIcon: <AiFillAppstore />, to: '/rooms' },
     // { name: 'Cleaning', icon: <MdOutlineCleaningServices />, activeIcon: < />, to: '/cleaning' },
     { name: 'Settings', icon: <BsGear />, activeIcon: <BsGearFill />, to: '/settings' },
-    { name: <Logout />, icon: <IoLogOutOutline />, activeIcon: <IoLogOut />, to: '/login' },
+    {
+      name: <Logout />,
+      icon: <IoLogOutOutline />,
+      activeIcon: <IoLogOut />,
+      to: '/login',
+      onClick: handleLogout,
+    },
   ];
 
   return (
     <div
-      className={`top-auto fixed w-screen sm:w-16 min-h-fit sm:min-h-screen bg-white sm:inset-y-0  drop-shadow-lg ease-in md:w-64 z-10 ${propClassName}`}
+      className={`bottom-0 fixed w-screen sm:w-16 min-h-fit sm:min-h-screen bg-white sm:inset-y-0  drop-shadow-lg ease-in md:w-64 z-10 ${propClassName}`}
     >
       <div className="hidden w-full h-20 sm:flex items-center justify-center py-4 sm:mb-4">
         <img src={logo} alt="Logo" className="w-10 h-10" />
@@ -44,6 +58,7 @@ const Sidebar = ({ className: propClassName }) => {
           >
             <NavLink
               to={item.to}
+              onClick={item.onClick}
               className={({ isActive }) =>
                 `flex px-4 sm:pl-6 md:pl-7 items-center h-full text-base text-gray-500 ${
                   isActive && activeSidebarClassName

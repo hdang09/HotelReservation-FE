@@ -3,11 +3,15 @@ import GoogleLogin from 'react-google-login';
 import { CLIENT_ID } from '../config';
 import hotel from '../assets/hotel.gif';
 import { FcGoogle } from 'react-icons/fc';
+import { login } from '../app/authSlice';
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
+  const dispatch = useDispatch();
+
   const onSuccess = (response) => {
     localStorage.setItem('token', JSON.stringify(response.tokenId));
-    if (localStorage.getItem('token')) window.location = '/';
+    if (localStorage.getItem('token')) dispatch(login());
   };
 
   const onFailure = (response) => {

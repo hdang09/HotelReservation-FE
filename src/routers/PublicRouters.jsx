@@ -4,7 +4,6 @@ import { authSelector } from '../app/authSlice';
 
 const PublicRouters = () => {
   const isAuthenticated = useSelector(authSelector);
-  console.log(isAuthenticated);
   return isAuthenticated ? <Navigate to="/" replace /> : <Outlet />;
 };
 

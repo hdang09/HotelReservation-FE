@@ -9,10 +9,14 @@ const Header = () => {
   const tokenFromLocal = JSON.stringify(localStorage.getItem('token'));
   const token = tokenFromLocal ? jwt_decode(tokenFromLocal) : null;
 
+  const hour = new Date().getHours();
+  const greetings =
+    hour >= 5 && hour < 12 ? 'morning' : hour >= 12 && hour < 18 ? 'afternoon' : 'evening';
+
   return (
     <div className={`${display} justify-between items-center py-3 px-6`}>
       <div>
-        <h1 className="text-3xl font-bold">Good morning!</h1>
+        <h1 className="text-3xl font-bold">Good {greetings}!</h1>
         <h3>Welcome back and explore our hotel</h3>
       </div>
       {/* <Input noLabel className="hidden w-[25rem] lg:block" /> */}
