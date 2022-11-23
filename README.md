@@ -1,4 +1,4 @@
-# Hotel Management API
+# Hotel Management
 
 ## Description
 

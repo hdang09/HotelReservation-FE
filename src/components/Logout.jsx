@@ -1,10 +1,15 @@
 import { CLIENT_ID } from '../config';
 import React from 'react';
 import { GoogleLogout } from 'react-google-login';
+import { useDispatch } from 'react-redux';
+import { signOut } from '../app/authSlice';
 
 const Logout = () => {
+  const dispatch = useDispatch();
   const onLogoutSuccess = (response) => {
     localStorage.removeItem('token');
+    dispatch(signOut);
+    window.location = '/login';
   };
   return (
     <GoogleLogout
@@ -14,7 +19,7 @@ const Logout = () => {
       onFailure={(e) => console.log(e)}
       render={({ disabled, onClick }) => {
         return (
-          <span onClick={onClick} disabled={disabled}>
+          <span onClick={onClick} disabled={disabled} className="leading-10">
             Log out
           </span>
         );
