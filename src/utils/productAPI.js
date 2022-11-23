@@ -1,4 +1,4 @@
-import { post, get, put, remove } from './apiCaller';
+import { post, get, put, remove } from './APICaller';
 
 // Rooms
 export const getAllRoom = () => {
