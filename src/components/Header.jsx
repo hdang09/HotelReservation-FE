@@ -6,7 +6,8 @@ const Header = () => {
   const isCalendarPath = window.location.pathname === '/calendar';
   const display = isCalendarPath ? 'hidden' : 'flex';
 
-  const token = jwt_decode(JSON.stringify(localStorage.getItem('token')));
+  const tokenFromLocal = JSON.stringify(localStorage.getItem('token'));
+  const token = tokenFromLocal ? jwt_decode(tokenFromLocal) : null;
 
   return (
     <div className={`${display} justify-between items-center py-3 px-6`}>
