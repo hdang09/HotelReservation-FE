@@ -19,7 +19,6 @@ export const bookRoomAsync = createAsyncThunk('rooms/bookRoomAsync', async (payl
       body: JSON.stringify(payload),
     });
     console.log(res);
-    console.log(res.message);
   } catch (e) {
     console.error(e);
   }
