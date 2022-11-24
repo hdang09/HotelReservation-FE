@@ -43,7 +43,6 @@ const Reservation = () => {
 
   const onSubmit = useCallback(
     (data) => {
-      console.log(roomData);
       dispatch(
         bookRoomAsync({
           ...roomData,

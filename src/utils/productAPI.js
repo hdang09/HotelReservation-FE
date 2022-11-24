@@ -23,7 +23,6 @@ export const updateRoom = (room = {}) => {
 
 export const updateStatus = (id, status) => {
   const url = '/rooms/update-status';
-  console.log(id, status);
   return put(url, { id, status });
 };
 

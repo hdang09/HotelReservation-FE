@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { PacmanLoader } from 'react-spinners';
 import { getRoomsAsync } from '../app/roomsSlice';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { useCallback } from 'react';
 
@@ -11,7 +11,6 @@ const NUMS_OF_FLOOR = 8,
 
 const Rooms = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const rooms = useSelector((state) => state.rooms);
   const existedRooms = rooms?.map((room) => room.roomNumber);
 
