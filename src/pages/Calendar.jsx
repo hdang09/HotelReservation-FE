@@ -34,12 +34,12 @@ const Calendar = () => {
 
   const handleClose = () => setPopup({});
   return (
-    <>
+    <div>
       <div className="px-[200px]">
-        <EventCalendar events={events} />
+        <EventCalendar />
       </div>
-      {Object.keys(popup).length !== 0 && <RoomPopup room={popup} handleClose={handleClose} />}
-    </>
+      {/* {Object.keys(popup).length !== 0 && <RoomPopup room={popup} handleClose={handleClose} />} */}
+    </div>
   );
 };
 
