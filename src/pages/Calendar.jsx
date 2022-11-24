@@ -6,7 +6,7 @@ import { getSpecificRoom } from '../utils/productAPI';
 
 const Calendar = () => {
   const [events, setEvents] = useState([]);
-  const [popup, setPopup] = useState(false);
+  const [popup, setPopup] = useState({});
   const roomNumber = new URLSearchParams(window.location.search).get('room');
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const Calendar = () => {
     setPopup(events.filter((ev) => ev.id === id)[0].details);
   };
 
-  const handleClose = () => setPopup(false);
+  const handleClose = () => setPopup({});
   return (
     <>
       <div className="px-[200px]">

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { PacmanLoader } from 'react-spinners';
 import { getRoomsAsync } from '../app/roomsSlice';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { useCallback } from 'react';
 
@@ -28,14 +28,14 @@ const Rooms = () => {
       let roomNumber = floor * 100 + room;
       const isReserved = existedRooms.includes(roomNumber);
       item.push(
-        <div
+        <Link
+          to={`/calendar?room=${roomNumber}`}
           key={roomNumber}
-          className={`min-w-8 h-auto bg-white py-3 px-6 rounded-xl drop-shadow-lg cursor-pointer hover:opacity-60`}
-          onClick={() => navigate(`/calendar?room=${roomNumber}`)}
+          className={`min-w-8 h-auto bg-white py-3 px-6 rounded-xl drop-shadow-lg cursor-pointer hover:opacity-60 text-black`}
         >
           <h2 className="font-bold text-2xl">Room {roomNumber}</h2>
           <h3 className="text-lg">{isReserved ? 'Reserved' : 'Available'}</h3>
-        </div>
+        </Link>
       );
     }
     return item;
