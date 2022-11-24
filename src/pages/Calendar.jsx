@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import EventCalendar from 'react-awesome-calendar';
 import { RoomPopup } from '../components';
 import { getSpecificRoom } from '../utils/productAPI';
+import has from 'has-value';
 
 const Calendar = () => {
   const [events, setEvents] = useState([]);
@@ -33,13 +33,20 @@ const Calendar = () => {
     setPopup(events.filter((ev) => ev.id === id)[0].details);
   };
 
+  const isEmpty = (obj) => {
+    for (const property in obj) {
+      return false;
+    }
+    return true;
+  };
+
   const handleClose = () => setPopup({});
   return (
     <>
       <div className="px-[200px]">
         <EventCalendar events={events} onClickEvent={handleShowEvent} />
       </div>
-      {Object.keys(popup).length !== 0 && <RoomPopup room={popup} handleClose={handleClose} />}
+      {!isEmpty(popup) && <RoomPopup room={popup} handleClose={handleClose} />}
     </>
   );
 };

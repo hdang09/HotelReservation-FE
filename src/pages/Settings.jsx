@@ -1,9 +1,8 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Toggle, Input } from '../components'
+import React from 'react';
+import { Toggle, Input } from '../components';
 
-const Settings = (props) => {
-  const [color, setColor] = React.useState('#ffa500')
+const Settings = () => {
+  const [color, setColor] = React.useState('#ffa500');
   return (
     <>
       <div className="flex items-center my-4">
@@ -19,9 +18,9 @@ const Settings = (props) => {
         <a className="inline-block mr-2 font-bold text-black">Reset to default color: </a>
       </div>
     </>
-  )
-}
+  );
+};
 
-Settings.propTypes = {}
+Settings.propTypes = {};
 
-export default Settings
+export default Settings;
