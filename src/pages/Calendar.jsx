@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Calendar from 'react-awesome-calendar';
+import EventCalendar from 'react-awesome-calendar';
 import { RoomPopup } from '../components';
 import { getSpecificRoom } from '../utils/productAPI';
 
-const CalendarRoute = () => {
+const Calendar = () => {
   const [events, setEvents] = useState([]);
   const [popup, setPopup] = useState({});
   const roomNumber = new URLSearchParams(window.location.search).get('room');
@@ -36,11 +36,11 @@ const CalendarRoute = () => {
   return (
     <>
       <div className="px-[200px]">
-        <Calendar events={events} onClickEvent={handleShowEvent} />
+        <EventCalendar events={events} />
       </div>
       {Object.keys(popup).length !== 0 && <RoomPopup room={popup} handleClose={handleClose} />}
     </>
   );
 };
 
-export default CalendarRoute;
+export default Calendar;
