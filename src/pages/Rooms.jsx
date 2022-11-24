@@ -32,8 +32,8 @@ const Rooms = () => {
           key={roomNumber}
           className={`min-w-8 h-auto bg-white py-3 px-6 rounded-xl drop-shadow-lg cursor-pointer hover:opacity-60 text-black`}
         >
-          <h2 className="font-bold text-2xl">Room {roomNumber}</h2>
-          <h3 className="text-lg">{isReserved ? 'Reserved' : 'Available'}</h3>
+          <h2 className="font-semibold text-2xl">Room {roomNumber}</h2>
+          <h3 className="text-lg font-normal">{isReserved ? 'Reserved' : 'Available'}</h3>
         </Link>
       );
     }

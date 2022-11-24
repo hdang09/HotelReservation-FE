@@ -16,7 +16,7 @@ import jwtDecode from 'jwt-decode';
 const Sidebar = ({ className: propClassName }) => {
   const dispatch = useDispatch();
 
-  const activeSidebarClassName = 'sm:border-r-4 border-primary bg-fade';
+  const activeSidebarClassName = 'sm:border-r-4 border-primary';
   const tokenFromLocal = JSON.parse(localStorage.getItem('token'));
   const name = tokenFromLocal ? jwtDecode(tokenFromLocal).given_name : 'Anonymous';
 
@@ -69,16 +69,16 @@ const Sidebar = ({ className: propClassName }) => {
                 }`
               }
               children={({ isActive }) => {
-                const active = isActive && 'text-primary';
+                const active = isActive && 'text-primary font-semibold';
                 return (
-                  <>
+                  <div className="flex items-center font-normal">
                     <span className={`text-xl text-gray-500 ${active}`}>
                       {isActive ? item.activeIcon : item.icon}
                     </span>
                     <span className={`hidden text-base text-gray-500 ml-4 md:block ${active}`}>
                       {item.name}
                     </span>
-                  </>
+                  </div>
                 );
               }}
             ></NavLink>
@@ -86,7 +86,7 @@ const Sidebar = ({ className: propClassName }) => {
         ))}
       </ul>
 
-      <div className="none sm:block mt-8">
+      <div className="hidden md:block mt-8">
         <img src={moreFeature} alt="" />
         <div className="flex justify-center flex-col items-center mt-4">
           <h2 className="font-semibold  mb-2">Hi, {name}</h2>

@@ -42,7 +42,7 @@ const Calendar = () => {
 
   return (
     <>
-      <div className="xl:px-[200px]">
+      <div className="max-w-[50rem] mx-auto">
         {/* <EventCalendar events={events} /> */}
         <FullCalendar
           defaultView="dayGridMonth"
