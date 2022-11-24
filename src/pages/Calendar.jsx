@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import EventCalendar from 'react-awesome-calendar';
 import { RoomPopup } from '../components';
 import { getSpecificRoom } from '../utils/productAPI';
-import has from 'has-value';
 
 const Calendar = () => {
   const [events, setEvents] = useState([]);
