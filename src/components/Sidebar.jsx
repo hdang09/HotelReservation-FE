@@ -5,16 +5,20 @@ import { MdHotelClass, MdOutlineHotelClass } from 'react-icons/md';
 import { IoLogOutOutline } from 'react-icons/io5';
 import { IoLogOut } from 'react-icons/io5';
 import { BsGear, BsGearFill } from 'react-icons/bs';
+import moreFeature from '../assets/more-feature.png';
 
 import logo from '../assets/logo.png';
 import Logout from './Logout';
 import { useDispatch } from 'react-redux';
 import { signOut } from '../app/authSlice';
+import jwtDecode from 'jwt-decode';
 
 const Sidebar = ({ className: propClassName }) => {
   const dispatch = useDispatch();
 
   const activeSidebarClassName = 'sm:border-r-4 border-primary bg-fade';
+  const tokenFromLocal = JSON.parse(localStorage.getItem('token'));
+  const name = tokenFromLocal ? jwtDecode(tokenFromLocal).given_name : 'Anonymous';
 
   const handleLogout = () => {
     dispatch(signOut());
@@ -42,7 +46,7 @@ const Sidebar = ({ className: propClassName }) => {
 
   return (
     <div
-      className={`bottom-0 fixed w-screen sm:w-16 min-h-fit sm:min-h-screen bg-white sm:inset-y-0  drop-shadow-lg ease-in md:w-64 z-10 ${propClassName}`}
+      className={`bottom-0 fixed w-screen sm:w-16 min-h-fit sm:min-h-screen bg-white sm:inset-y-0 drop-shadow-lg ease-in md:w-64 z-10 ${propClassName}`}
     >
       <div className="hidden w-full h-20 sm:flex items-center justify-center py-4 sm:mb-4">
         <img src={logo} alt="Logo" className="w-10 h-10" />
@@ -81,6 +85,24 @@ const Sidebar = ({ className: propClassName }) => {
           </li>
         ))}
       </ul>
+
+      <div className="none sm:block mt-8">
+        <img src={moreFeature} alt="" />
+        <div className="flex justify-center flex-col items-center mt-4">
+          <h2 className="font-semibold  mb-2">Hi, {name}</h2>
+          <p className="text-center text-sm">
+            Need more feature? <br />
+            Please contact admin
+          </p>
+          <a
+            // href="https://github.com/hdang09"
+            href="https://facebook.com/hdang.09"
+            className="py-1 px-4 mt-4 bg-primary text-white rounded-lg hover:bg-white hover:text-primary border-2 border-primary"
+          >
+            Contact
+          </a>
+        </div>
+      </div>
     </div>
   );
 };

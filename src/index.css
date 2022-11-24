@@ -123,3 +123,13 @@ table tr td {
   padding: 20px 0;
   text-align: center;
 }
+
+.fc-button-primary {
+  color: #fff;
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.fc-event {
+  border: 1px solid transparent;
+}

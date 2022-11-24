@@ -1,6 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { AiFillAppstore } from 'react-icons/ai';
+import { FiLogIn, FiLogOut } from 'react-icons/fi';
+import { MdHotelClass } from 'react-icons/md';
 import { getReport } from '../utils/productAPI';
 
 const Home = () => {
@@ -26,7 +29,9 @@ const Home = () => {
                 {report.total.current} new booked rooms <span className="text-gray-400">today</span>
               </p>
             </div>
-            <div>Icon</div>
+            <div className="flex justify-center items-center w-12 h-12 text-lg rounded-full bg-sky-100">
+              <AiFillAppstore size={20} />
+            </div>
           </div>
           <div className="flex justify-between w-full min-h-[6rem] rounded-lg drop-shadow-lg bg-white p-4 text-[#cf8080]">
             <div>
@@ -37,7 +42,9 @@ const Home = () => {
                 <span className="text-gray-400">today</span>
               </p>
             </div>
-            <div>Icon</div>
+            <div className="flex justify-center items-center w-12 h-12 text-lg rounded-full bg-rose-100">
+              <MdHotelClass size={20} />
+            </div>
           </div>
           <div className="flex justify-between w-full min-h-[6rem] rounded-lg drop-shadow-lg bg-white p-4 text-[#50aca3]">
             <div>
@@ -47,7 +54,12 @@ const Home = () => {
                 {report.checkIn.current} check-in <span className="text-gray-400">today</span>
               </p>
             </div>
-            <div>Icon</div>
+            <div
+              className="flex justify-center items-center w-12 h-12 text-lg rounded-full bg-green-100
+            "
+            >
+              <FiLogIn size={20} />
+            </div>
           </div>
           <div className="flex justify-between w-full min-h-[6rem] rounded-lg drop-shadow-lg bg-white p-4">
             <div>
@@ -57,7 +69,9 @@ const Home = () => {
                 {report.checkOut.current} check-out <span className="text-gray-400">today</span>
               </p>
             </div>
-            <div>Icon</div>
+            <div className="flex justify-center items-center w-12 h-12 text-lg rounded-full bg-stone-100">
+              <FiLogOut size={20} />
+            </div>
           </div>
         </div>
       )}
