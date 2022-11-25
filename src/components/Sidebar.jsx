@@ -89,7 +89,7 @@ const Sidebar = ({ className: propClassName }) => {
       <div className="hidden md:block mt-8">
         <img src={moreFeature} alt="" />
         <div className="flex justify-center flex-col items-center mt-4">
-          <h2 className="font-semibold  mb-2">Hi, {name}</h2>
+          <h2 className="font-semibold  mb-2">Hi, {name}!</h2>
           <p className="text-center text-sm">
             Need more feature? <br />
             Please contact admin

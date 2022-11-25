@@ -25,7 +25,15 @@ const Rooms = () => {
   const renderRooms = useCallback(() => {
     for (let room = 1; room <= NUMS_ROOMS_EACH_FLOOR; room++) {
       let roomNumber = floor * 100 + room;
-      const isReserved = existedRooms.includes(roomNumber);
+      // const isReserved = existedRooms.includes(roomNumber);
+      const roomType =
+        roomNumber % 100 <= 3
+          ? 'Single Room'
+          : roomNumber % 100 <= 6
+          ? 'Double Room'
+          : roomNumber % 100 <= 9
+          ? 'Studio Room'
+          : 'Deluxe Room';
       item.push(
         <Link
           to={`/calendar?room=${roomNumber}`}
@@ -33,7 +41,8 @@ const Rooms = () => {
           className={`min-w-8 h-auto bg-white py-3 px-6 rounded-xl drop-shadow-lg cursor-pointer hover:opacity-60 text-black`}
         >
           <h2 className="font-semibold text-2xl">Room {roomNumber}</h2>
-          <h3 className="text-lg font-normal">{isReserved ? 'Reserved' : 'Available'}</h3>
+          {/* <h3 className="text-lg font-normal">{isReserved ? 'Reserved' : 'Available'}</h3> */}
+          <h3 className="text-lg font-normal">{roomType}</h3>
         </Link>
       );
     }
