@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { Toggle, Input } from '../components';
+import { TbPaint, TbPaintOff } from 'react-icons/tb';
+import { Input } from '../components';
 import { useLocalStorage } from '../hooks';
 
 const Settings = () => {
@@ -20,7 +21,9 @@ const Settings = () => {
         </div> */}
 
         <div className="flex items-center my-4">
-          <h2 className="inline-block mr-2 font-medium">Change default color: </h2>
+          <h2 className="inline-flex items-center mr-2 font-medium">
+            <TbPaint /> <span className="mx-2">Change default color:</span>
+          </h2>
           <input
             type="color"
             className="w-10 h-10"
@@ -31,8 +34,11 @@ const Settings = () => {
         </div>
 
         <div className="flex items-center my-4">
-          <a className="inline-block mr-2 font-medium text-black" onClick={resetDefault}>
-            Reset to default color:{' '}
+          <a
+            className="inline-flex items-center mr-2 font-medium text-black cursor-pointer"
+            onClick={resetDefault}
+          >
+            <TbPaintOff /> <span className="mx-2">Reset to default color:</span>
           </a>
         </div>
       </div>

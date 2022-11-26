@@ -1,23 +1,15 @@
-import React, { useCallback, useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useCallback, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { DateRange } from 'react-date-range';
 import moment from 'moment';
-
-// import * as actions from '../app/actions'
-// import { getRooms, bookRoom } from '../app/actions'
 import { Input } from '../components';
 
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-import { bookRoomAsync, getRoomsAsync } from '../app/roomsSlice';
+import { bookRoom } from '../utils/productAPI';
+import { toast } from 'react-toastify';
 
 const Reservation = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getRoomsAsync());
-  }, [dispatch]);
-
   const { control, register, handleSubmit } = useForm();
 
   const [roomData, setRoomData] = useState({
@@ -42,31 +34,34 @@ const Reservation = () => {
   ]);
 
   const onSubmit = useCallback(
-    (data) => {
-      dispatch(
-        bookRoomAsync({
-          ...roomData,
-          checkIn: new Date(roomData.checkIn.getTime() + 86400000),
-          checkOut: new Date(roomData.checkOut.getTime() + 86400000),
-        })
-      );
-      alert('Booked successfully!');
-      // setRoomData({
-      //   roomNumber: undefined,
-      //   fullname: '',
-      //   idCard: '',
-      //   phone: '',
-      //   services: {
-      //     motorbikeRental: false,
-      //     parking: false,
-      //   },
-      //   checkIn: undefined,
-      //   checkOut: undefined,
-      //   email: '',
-      //   status: '',
-      // })
+    async (data) => {
+      try {
+        const res = await bookRoom({
+          ...data,
+          checkIn: roomData.checkIn,
+          checkOut: roomData.checkOut,
+        });
+        toast.success(res.data.message);
+        setRoomData({
+          roomNumber: undefined,
+          fullname: '',
+          idCard: '',
+          phone: '',
+          services: {
+            motorbikeRental: false,
+            parking: false,
+          },
+          checkIn: undefined,
+          checkOut: undefined,
+          email: '',
+          status: '',
+        });
+      } catch (err) {
+        console.error(err);
+        toast.error(err.message);
+      }
     },
-    [dispatch, roomData]
+    [roomData]
   );
 
   const BILL = [
@@ -119,6 +114,7 @@ const Reservation = () => {
           id="reserved"
           type="radio"
           onChange={() => setRoomData({ ...roomData, status: 'Reserved' })}
+          checked={roomData.status === 'Reserved'}
         />
         <label htmlFor="reserved" className="pl-2">
           Reserved
@@ -129,6 +125,7 @@ const Reservation = () => {
           id="checked-in"
           type="radio"
           onChange={() => setRoomData({ ...roomData, status: 'Checked-in' })}
+          checked={roomData.status === 'Checked-in'}
         />
         <label htmlFor="checked-in" className="pl-2">
           Checked-in
@@ -224,7 +221,7 @@ const Reservation = () => {
               value={roomData.phone}
               onChange={(e) => setRoomData({ ...roomData, phone: e.target.value })}
             />
-            <RenderServices />
+            {/* <RenderServices /> */}
             <RenderStatus />
           </div>
           <div>

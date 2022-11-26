@@ -15,20 +15,26 @@ const Calendar = () => {
   useEffect(() => {
     (async () => {
       const res = await getSpecificRoom(roomNumber);
-      const events = res.data.rooms.map((item) => ({
-        id: item._id,
-        backgroundColor:
-          item.status === 'Reserved'
-            ? '#cf8080'
-            : item.status === 'Checked-in'
-            ? '#50aca3'
-            : '#213547',
-        start: item.checkIn,
-        end: item.checkOut,
-        title: item.status,
-        allDay: true,
-        details: { ...item },
-      }));
+
+      const events = res.data.rooms.map((item) => {
+        const checkOut = new Date(item.checkOut);
+        checkOut.setDate(checkOut.getDate() + 1);
+
+        return {
+          id: item._id,
+          backgroundColor:
+            item.status === 'Reserved'
+              ? '#cf8080'
+              : item.status === 'Checked-in'
+              ? '#50aca3'
+              : '#213547',
+          start: item.checkIn,
+          end: checkOut,
+          title: item.status,
+          allDay: true,
+          details: { ...item },
+        };
+      });
       setEvents(events);
     })();
   }, [popup]);

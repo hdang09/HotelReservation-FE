@@ -36,3 +36,8 @@ export const getReport = () => {
   const url = '/rooms/report';
   return get(url);
 };
+
+export const getTodayAvailability = () => {
+  const url = '/rooms/report-today';
+  return get(url);
+};

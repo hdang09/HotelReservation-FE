@@ -79,7 +79,7 @@ const RoomPopup = ({ room = {}, handleClose = () => {} }) => {
             </div>
             <div className="text-xl">
               <p>Check-in</p>
-              <p className="font-bold">{moment(room.checkIn).format('ddd, DD/MM/YYYY 14:00')}</p>
+              <p className="font-bold">{moment(room.checkIn).format('dddd, DD/MM/YYYY 12:00')}</p>
             </div>
           </div>
 
@@ -90,7 +90,7 @@ const RoomPopup = ({ room = {}, handleClose = () => {} }) => {
             </div>
             <div className="text-xl">
               <p>Check-out</p>
-              <p className="font-bold">{moment(room.checkOut).format('ddd, DD/MM/YYYY 12:00')}</p>
+              <p className="font-bold">{moment(room.checkOut).format('dddd, DD/MM/YYYY 12:00')}</p>
             </div>
           </div>
 
