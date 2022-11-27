@@ -135,16 +135,32 @@ const Home = () => {
             <th className="py-4">Floor 7</th>
             <th className="py-4">Floor 8</th>
           </tr>
-          {reportToday.map((item, index) => {
-            return (
-              <tr key={item.name} className={`${index % 2 === 1 && 'bg-gray-100'} rounded-lg`}>
-                <td>{item.name}</td>
-                {item.rooms.map((room, idx) => (
-                  <td key={idx}>{room}</td>
-                ))}
-              </tr>
-            );
-          })}
+          {reportToday.length
+            ? reportToday.map((item, index) => {
+                return (
+                  <tr key={item.name} className={`${index % 2 === 1 && 'bg-gray-100'} rounded-lg`}>
+                    <td>{item.name}</td>
+                    {item.rooms.map((room, idx) => (
+                      <td key={idx}>{room}</td>
+                    ))}
+                  </tr>
+                );
+              })
+            : Array(4)
+                .fill()
+                .map((item, index) => {
+                  return (
+                    <tr key={index} className={`${index % 2 === 1 && 'bg-gray-100'} rounded-lg`}>
+                      {Array(8)
+                        .fill()
+                        .map((item2, idx) => (
+                          <td key={idx}>
+                            <Skeleton width="50px" />
+                          </td>
+                        ))}
+                    </tr>
+                  );
+                })}
         </table>
       </div>
     </>
