@@ -151,7 +151,7 @@ const Home = () => {
                 .map((item, index) => {
                   return (
                     <tr key={index} className={`${index % 2 === 1 && 'bg-gray-100'} rounded-lg`}>
-                      {Array(8)
+                      {Array(9)
                         .fill()
                         .map((item2, idx) => (
                           <td key={idx}>

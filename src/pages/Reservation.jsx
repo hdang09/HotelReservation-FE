@@ -6,8 +6,9 @@ import { Input } from '../components';
 
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-import { bookRoom } from '../utils/productAPI';
+import { bookRoom, getSpecificRoom } from '../utils/productAPI';
 import { toast } from 'react-toastify';
+import getDates from '../utils/getDates';
 
 const Reservation = () => {
   const { control, register, handleSubmit } = useForm();
@@ -32,6 +33,18 @@ const Reservation = () => {
       key: 'selection',
     },
   ]);
+
+  const handleSetRoomNumber = async (e) => {
+    setRoomData((prev) => ({ ...prev, roomNumber: Number(e.target.value) }));
+    try {
+      const { data } = await getSpecificRoom(e.target.value);
+      let disabledDates = data.rooms.map((room) => getDates(room.checkIn, room.checkOut)).flat();
+      setRoomData((prev) => ({ ...prev, disabledDates }));
+      console.log(roomData);
+    } catch (e) {
+      toast.error(e.message);
+    }
+  };
 
   const onSubmit = useCallback(
     async (data) => {
@@ -107,7 +120,7 @@ const Reservation = () => {
   );
 
   const RenderStatus = () => (
-    <div>
+    <div className="p-2">
       <h2>Status: </h2>
       <div className="m-2">
         <input
@@ -188,7 +201,7 @@ const Reservation = () => {
               label="Room Number"
               {...register('roomNumber', { required: true })}
               value={roomData.roomNumber}
-              onChange={(e) => setRoomData({ ...roomData, roomNumber: Number(e.target.value) })}
+              onChange={handleSetRoomNumber}
             />
             <Input
               placeholder="Example: Tran Hai Dang"
@@ -232,6 +245,8 @@ const Reservation = () => {
                 <DateRange
                   {...field}
                   editableDateInputs={true}
+                  minDate={new Date()}
+                  months={2}
                   onChange={(item) => {
                     setRoomData({
                       ...roomData,
@@ -243,6 +258,8 @@ const Reservation = () => {
                   }}
                   moveRangeOnFirstSelection={false}
                   ranges={dateRanges}
+                  disabledDates={roomData.disabledDates}
+                  endDatePlaceholder="Early"
                 />
               )}
             />
@@ -256,7 +273,5 @@ const Reservation = () => {
     </>
   );
 };
-
-Reservation.propTypes = {};
 
 export default Reservation;
