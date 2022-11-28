@@ -7,17 +7,19 @@ import { MdHotelClass } from 'react-icons/md';
 import { getReport, getTodayAvailability } from '../utils/productAPI';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { toast } from 'react-toastify';
 
 const Home = () => {
   const [report, setReport] = useState({});
   const [reportToday, setReportToday] = useState([]);
-  console.log(reportToday);
+
   useEffect(() => {
     const fn = async () => {
       try {
         const res = await getReport();
         setReport(res.data.report);
       } catch (err) {
+        toast.error(err.message);
         console.error(err);
       }
     };

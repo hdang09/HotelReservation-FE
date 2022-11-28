@@ -131,7 +131,9 @@ table tr td {
   text-align: center;
 }
 
-.fc-button-primary {
+.fc-button-primary,
+.fc-button-primary:not(:disabled):active,
+.fc-button-primary:not(:disabled).fc-button-active {
   color: #fff;
   background-color: var(--primary-color);
   border-color: var(--primary-color);

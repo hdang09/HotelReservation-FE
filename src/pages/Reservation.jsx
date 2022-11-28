@@ -28,6 +28,7 @@ const Reservation = () => {
     price: 0,
   });
 
+  // Calculate price
   let roomType = useMemo(
     () =>
       roomData.roomNumber % 100 <= 3
@@ -41,17 +42,17 @@ const Reservation = () => {
         : 0,
     [roomData.roomNumber]
   );
+
   const MILISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
   let start = useMemo(() => roomData.checkIn, [roomData.checkIn]);
   let end = useMemo(() => roomData.checkOut, [roomData.checkOut]);
-
   let countDays = useMemo(
-    () => Math.round(Math.abs((end - start) / MILISECONDS_PER_DAY)),
+    () => Math.round(Math.abs((end - start) / MILISECONDS_PER_DAY) + 1),
     [start, end]
   );
   let price = roomType * countDays;
+
   useEffect(() => {
-    console.count('render');
     setRoomData((prev) => ({ ...prev, price }));
   }, [roomType, countDays]);
 
@@ -69,7 +70,6 @@ const Reservation = () => {
       const { data } = await getSpecificRoom(e.target.value);
       let disabledDates = data.rooms.map((room) => getDates(room.checkIn, room.checkOut)).flat();
       setRoomData((prev) => ({ ...prev, disabledDates }));
-      console.log(roomData);
     } catch (e) {
       toast.error(e.message);
     }
@@ -79,7 +79,7 @@ const Reservation = () => {
     async (data) => {
       try {
         const res = await bookRoom({
-          ...data,
+          ...roomData,
           checkIn: roomData.checkIn,
           checkOut: roomData.checkOut,
           price,
@@ -240,7 +240,7 @@ const Reservation = () => {
               label="Fullname"
               {...register('fullname', { required: true })}
               value={roomData.fullname}
-              onChange={(e) => setRoomData({ ...roomData, fullname: e.target.value })}
+              onChange={(e) => setRoomData((prev) => ({ ...prev, fullname: e.target.value }))}
             />
             <Input
               label="Identity Card (ID)"
@@ -248,7 +248,7 @@ const Reservation = () => {
               type="number"
               {...register('idCard', { required: true, minLength: 9, maxLength: 12 })}
               value={roomData.idCard}
-              onChange={(e) => setRoomData({ ...roomData, idCard: Number(e.target.value) })}
+              onChange={(e) => setRoomData((prev) => ({ ...prev, idCard: Number(e.target.value) }))}
             />
             <Input
               placeholder="Example: dangtranhai628@gmail.com"
@@ -256,7 +256,7 @@ const Reservation = () => {
               type="email"
               {...register('email', { required: false })}
               value={roomData.email}
-              onChange={(e) => setRoomData({ ...roomData, email: e.target.value })}
+              onChange={(e) => setRoomData((prev) => ({ ...prev, email: e.target.value }))}
             />
             <Input
               placeholder="Example: 0123456789"
@@ -264,7 +264,7 @@ const Reservation = () => {
               type="number"
               {...register('phone', { required: true, minLength: 10, maxLength: 10 })}
               value={roomData.phone}
-              onChange={(e) => setRoomData({ ...roomData, phone: e.target.value })}
+              onChange={(e) => setRoomData((prev) => ({ ...prev, phone: e.target.value }))}
             />
             {/* <RenderServices /> */}
             <RenderStatus />

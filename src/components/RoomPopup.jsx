@@ -1,11 +1,12 @@
 import React from 'react';
 
 import { FaSignature } from 'react-icons/fa';
-import { HiOutlineIdentification, HiOutlineMail } from 'react-icons/hi';
+import { HiOutlineIdentification, HiOutlineMail, HiOutlineStatusOnline } from 'react-icons/hi';
 import { BsTelephone } from 'react-icons/bs';
 import { FiDollarSign, FiLogIn, FiLogOut } from 'react-icons/fi';
 import moment from 'moment';
 import { updateStatus } from '../utils/productAPI';
+import { toast } from 'react-toastify';
 
 const RoomPopup = ({ room = {}, handleClose = () => {} }) => {
   // const handleEdit = () => {};
@@ -17,6 +18,7 @@ const RoomPopup = ({ room = {}, handleClose = () => {} }) => {
       console.log(res);
     } catch (err) {
       console.error(err);
+      toast.error(err.message);
     }
   };
   return (
@@ -31,7 +33,7 @@ const RoomPopup = ({ room = {}, handleClose = () => {} }) => {
           {/* Fullname */}
           <div className="flex items-center my-2">
             <div className="w-12 h-12 bg-primary rounded-lg flex justify-center items-center text-2xl mr-3">
-              <FaSignature />
+              <FaSignature color="white" />
             </div>
             <div className="text-xl">
               <p>Fullname</p>
@@ -42,7 +44,7 @@ const RoomPopup = ({ room = {}, handleClose = () => {} }) => {
           {/* ID Card */}
           <div className="flex items-center my-2">
             <div className="w-12 h-12 bg-primary rounded-lg flex justify-center items-center text-2xl mr-3">
-              <HiOutlineIdentification />
+              <HiOutlineIdentification color="white" />
             </div>
             <div className="text-xl">
               <p>ID Card</p>
@@ -53,7 +55,7 @@ const RoomPopup = ({ room = {}, handleClose = () => {} }) => {
           {/* Phone */}
           <div className="flex items-center my-2">
             <div className="w-12 h-12 bg-primary rounded-lg flex justify-center items-center text-2xl mr-3">
-              <BsTelephone />
+              <BsTelephone color="white" />
             </div>
             <div className="text-xl">
               <p>Phone</p>
@@ -64,7 +66,7 @@ const RoomPopup = ({ room = {}, handleClose = () => {} }) => {
           {/* E-mail */}
           <div className="flex items-center my-2">
             <div className="w-12 h-12 bg-primary rounded-lg flex justify-center items-center text-2xl mr-3">
-              <HiOutlineMail />
+              <HiOutlineMail color="white" />
             </div>
             <div className="text-xl">
               <p>E-mail</p>
@@ -75,7 +77,7 @@ const RoomPopup = ({ room = {}, handleClose = () => {} }) => {
           {/* Check-in */}
           <div className="flex items-center my-2">
             <div className="w-12 h-12 bg-primary rounded-lg flex justify-center items-center text-2xl mr-3">
-              <FiLogIn />
+              <FiLogIn color="white" />
             </div>
             <div className="text-xl">
               <p>Check-in</p>
@@ -86,7 +88,7 @@ const RoomPopup = ({ room = {}, handleClose = () => {} }) => {
           {/* Check-out */}
           <div className="flex items-center my-2">
             <div className="w-12 h-12 bg-primary rounded-lg flex justify-center items-center text-2xl mr-3">
-              <FiLogOut />
+              <FiLogOut color="white" />
             </div>
             <div className="text-xl">
               <p>Check-out</p>
@@ -97,7 +99,7 @@ const RoomPopup = ({ room = {}, handleClose = () => {} }) => {
           {/* Status */}
           <div className="flex items-center my-2">
             <div className="w-12 h-12 bg-primary rounded-lg flex justify-center items-center text-2xl mr-3">
-              <FiLogOut />
+              <HiOutlineStatusOnline color="white" />
             </div>
             <div className="text-xl">
               <p>Status</p>
@@ -108,7 +110,7 @@ const RoomPopup = ({ room = {}, handleClose = () => {} }) => {
           {/* Status */}
           <div className="flex items-center my-2">
             <div className="w-12 h-12 bg-primary rounded-lg flex justify-center items-center text-2xl mr-3">
-              <FiDollarSign />
+              <FiDollarSign color="white" />
             </div>
             <div className="text-xl">
               <p>Price</p>
