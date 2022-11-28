@@ -3,12 +3,12 @@ import React from 'react';
 import { FaSignature } from 'react-icons/fa';
 import { HiOutlineIdentification, HiOutlineMail } from 'react-icons/hi';
 import { BsTelephone } from 'react-icons/bs';
-import { FiLogIn, FiLogOut } from 'react-icons/fi';
+import { FiDollarSign, FiLogIn, FiLogOut } from 'react-icons/fi';
 import moment from 'moment';
 import { updateStatus } from '../utils/productAPI';
 
 const RoomPopup = ({ room = {}, handleClose = () => {} }) => {
-  const handleEdit = () => {};
+  // const handleEdit = () => {};
 
   const handleChangeStatus = async (status) => {
     try {
@@ -104,7 +104,18 @@ const RoomPopup = ({ room = {}, handleClose = () => {} }) => {
               <p className="font-bold">{room.status}</p>
             </div>
           </div>
-          <button onClick={handleEdit}>Edit</button>
+
+          {/* Status */}
+          <div className="flex items-center my-2">
+            <div className="w-12 h-12 bg-primary rounded-lg flex justify-center items-center text-2xl mr-3">
+              <FiDollarSign />
+            </div>
+            <div className="text-xl">
+              <p>Price</p>
+              <p className="font-bold">${room.price}</p>
+            </div>
+          </div>
+          {/* <button onClick={handleEdit}>Edit</button> */}
           <button onClick={() => handleChangeStatus('Checked-in')}>Checked-in</button>
           <button onClick={() => handleChangeStatus('Checked-out')}>Checked-out</button>
           <button onClick={() => handleChangeStatus('Canceled')}>Remove</button>
