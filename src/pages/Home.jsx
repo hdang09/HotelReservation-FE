@@ -48,99 +48,96 @@ const Home = () => {
     return number;
   };
 
+  const ROOMS = [
+    {
+      type: 'Booked',
+      total: valid(report?.total?.total),
+      current: valid(report?.total?.current, true),
+      color: 'text-sky-400',
+      bgColor: 'bg-sky-100',
+      icon: <AiFillAppstore size={20} />,
+    },
+    {
+      type: 'Reserved',
+      total: valid(report?.reserved?.total),
+      current: valid(report?.reserved?.current, true),
+      color: 'text-rose-400',
+      bgColor: 'bg-rose-100',
+      icon: <MdHotelClass size={20} />,
+    },
+    {
+      type: 'Checked-in',
+      total: valid(report?.checkIn?.total),
+      current: valid(report?.checkIn?.current, true),
+      color: 'text-green-400',
+      bgColor: 'bg-green-100',
+      icon: <FiLogOut size={20} />,
+    },
+    {
+      type: 'Checked-out',
+      total: valid(report?.checkOut?.total),
+      current: valid(report?.checkOut?.current, true),
+      color: 'text-stone-400',
+      bgColor: 'bg-stone-100',
+      icon: <FiLogOut size={20} />,
+    },
+  ];
+
   return (
     <>
-      <h1 className="text-2xl font-bold mb-6">Dashboard</h1>
-      {/* {Object.keys(report).length !== 0 && ( */}
+      <h1 className="text-2xl font-bold mb-6 text-black dark:text-white">Dashboard</h1>
       <div className="grid grid-cols-1 gap-3 lg:grid-cols-4 lg:gap-6">
-        <div className="flex justify-between w-full min-h-[6rem] rounded-lg drop-shadow-lg bg-white p-4 text-[#5C9ADE]">
-          <div>
-            <p className="text-gray-400">All Booked Rooms</p>
-            <h2 className="text-3xl text-black mb-4 font-semibold">
-              {valid(report?.total?.total)}
-            </h2>
-            <p className="text-sm">
-              {valid(report?.total?.current, true)} new booked rooms{' '}
-              <span className="text-gray-400">today</span>
-            </p>
-          </div>
-          <div className="flex justify-center items-center w-12 h-12 text-lg rounded-full bg-sky-100">
-            <AiFillAppstore size={20} />
-          </div>
-        </div>
-
-        <div className="flex justify-between w-full min-h-[6rem] rounded-lg drop-shadow-lg bg-white p-4 text-[#cf8080]">
-          <div>
-            <p className="text-gray-400">Reserved Rooms</p>
-            <h2 className="text-3xl text-black mb-4 font-semibold">
-              {valid(report?.reserved?.total)}
-            </h2>
-            <p className="text-sm">
-              {valid(report?.reserved?.current, true)} reserved rooms{' '}
-              <span className="text-gray-400">today</span>
-            </p>
-          </div>
-          <div className="flex justify-center items-center w-12 h-12 text-lg rounded-full bg-rose-100">
-            <MdHotelClass size={20} />
-          </div>
-        </div>
-
-        <div className="flex justify-between w-full min-h-[6rem] rounded-lg drop-shadow-lg bg-white p-4 text-[#50aca3]">
-          <div>
-            <p className="text-gray-400">Check In</p>
-            <h2 className="text-3xl text-black mb-4 font-semibold">
-              {valid(report?.checkIn?.total)}
-            </h2>
-            <p className="text-sm">
-              {valid(report?.checkIn?.current, true)} check-in{' '}
-              <span className="text-gray-400">today</span>
-            </p>
-          </div>
+        {ROOMS.map((room, idx) => (
           <div
-            className="flex justify-center items-center w-12 h-12 text-lg rounded-full bg-green-100
-            "
+            key={room.type}
+            className={`flex justify-between w-full min-h-[6rem] rounded-lg drop-shadow-lg bg-white dark:bg-slate-800 p-4 ${room.color}`}
           >
-            <FiLogIn size={20} />
+            <div>
+              <p className="text-gray-400">
+                {idx === 0 && 'All '}
+                {room.type} Rooms
+              </p>
+              <h2 className="text-3xl text-black dark:text-white mb-4 font-semibold">
+                {room.total}
+              </h2>
+              <p className="text-sm">
+                {room.current} {room.type.toLowerCase()} {idx === 0 && 'rooms'}{' '}
+                <span className="text-gray-400">today</span>
+              </p>
+            </div>
+            <div
+              className={`flex justify-center items-center w-12 h-12 text-lg rounded-full ${room.bgColor}`}
+            >
+              {room.icon}
+            </div>
           </div>
-        </div>
-
-        <div className="flex justify-between w-full min-h-[6rem] rounded-lg drop-shadow-lg bg-white p-4">
-          <div>
-            <p className="text-gray-400">Check Out</p>
-            <h2 className="text-3xl text-black mb-4 font-semibold">
-              {valid(report?.checkOut?.total)}
-            </h2>
-            <p className="text-sm">
-              {valid(report?.checkOut?.current, true)} check-out{' '}
-              <span className="text-gray-400">today</span>
-            </p>
-          </div>
-          <div className="flex justify-center items-center w-12 h-12 text-lg rounded-full bg-stone-100">
-            <FiLogOut size={20} />
-          </div>
-        </div>
+        ))}
       </div>
-      {/* )} */}
 
-      <h1 className="text-2xl font-bold mt-10 mb-6">Today Availability</h1>
+      <h1 className="text-2xl font-bold mt-10 mb-6 text-black dark:text-white">
+        Today Availability
+      </h1>
 
-      <div className="w-full bg-white p-6 rounded-lg drop-shadow-lg">
-        <table className="w-full">
+      <div className="w-[calc(100vw-32px)] sm:w-full overflow-x-auto bg-white p-6 rounded-lg drop-shadow-lg dark:bg-slate-800">
+        <table className="text-black dark:text-white w-max lg:w-full">
           <tr>
-            <th className="py-4 ">Room</th>
-            <th className="py-4">Floor 1</th>
-            <th className="py-4">Floor 2</th>
-            <th className="py-4">Floor 3</th>
-            <th className="py-4">Floor 4</th>
-            <th className="py-4">Floor 5</th>
-            <th className="py-4">Floor 6</th>
-            <th className="py-4">Floor 7</th>
-            <th className="py-4">Floor 8</th>
+            <th className="p-4 ">Room</th>
+            <th className="p-4">Floor 1</th>
+            <th className="p-4">Floor 2</th>
+            <th className="p-4">Floor 3</th>
+            <th className="p-4">Floor 4</th>
+            <th className="p-4">Floor 5</th>
+            <th className="p-4">Floor 6</th>
+            <th className="p-4">Floor 7</th>
+            <th className="p-4">Floor 8</th>
           </tr>
           {reportToday.length
             ? reportToday.map((item, index) => {
                 return (
-                  <tr key={item.name} className={`${index % 2 === 1 && 'bg-gray-100'} rounded-lg`}>
+                  <tr
+                    key={item.name}
+                    className={`${index % 2 === 1 && 'bg-gray-100 dark:bg-slate-700'} rounded-lg`}
+                  >
                     <td>{item.name}</td>
                     {item.rooms.map((room, idx) => (
                       <td key={idx}>{room}</td>
@@ -152,7 +149,10 @@ const Home = () => {
                 .fill()
                 .map((item, index) => {
                   return (
-                    <tr key={index} className={`${index % 2 === 1 && 'bg-gray-100'} rounded-lg`}>
+                    <tr
+                      key={index}
+                      className={`${index % 2 === 1 && 'bg-gray-100 dark:bg-slate-700'} rounded-lg`}
+                    >
                       {Array(9)
                         .fill()
                         .map((item2, idx) => (

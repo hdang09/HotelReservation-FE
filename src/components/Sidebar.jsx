@@ -46,7 +46,7 @@ const Sidebar = ({ className: propClassName }) => {
 
   return (
     <div
-      className={`bottom-0 fixed w-screen sm:w-16 min-h-fit sm:min-h-screen bg-white sm:inset-y-0 drop-shadow-lg ease-in md:w-64 z-10 ${propClassName}`}
+      className={`bottom-0 fixed w-screen sm:w-16 min-h-fit sm:min-h-screen bg-white dark:bg-slate-800 sm:inset-y-0 drop-shadow-lg ease-in md:w-64 z-10 ${propClassName}`}
     >
       <Link
         to="/"
@@ -61,18 +61,18 @@ const Sidebar = ({ className: propClassName }) => {
           <li
             title={item.name}
             key={item.name}
-            className="sm:block h-14 hover:bg-gray-100 rounded-lg"
+            className="sm:block h-14 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg"
           >
             <NavLink
               to={item.to}
               onClick={item.onClick}
               className={({ isActive }) =>
-                `flex px-4 sm:pl-6 md:pl-7 items-center h-full text-base text-gray-500 ${
+                `flex px-4 sm:pl-6 md:pl-7 items-center h-full text-base text-gray-500  ${
                   isActive && activeSidebarClassName
                 }`
               }
               children={({ isActive }) => {
-                const active = isActive && 'text-primary font-semibold';
+                const active = isActive && 'text-primary dark:text-primary font-semibold';
                 return (
                   <div className="flex items-center font-normal">
                     <span className={`text-xl text-gray-500 ${active}`}>

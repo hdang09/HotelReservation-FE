@@ -15,7 +15,7 @@ const Header = () => {
 
   return (
     <div className={`${display} justify-between items-center py-3 px-6`}>
-      <div>
+      <div className="text-black dark:text-white">
         <h1 className="text-3xl font-bold">Good {greetings}!</h1>
         <h3>Welcome back and explore our hotel</h3>
       </div>

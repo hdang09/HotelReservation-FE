@@ -13,6 +13,7 @@
     "@fullcalendar/daygrid": "4.4.0",
     "@fullcalendar/react": "4.4.0",
     "@fullcalendar/timegrid": "4.4.0",
+    "@hookform/error-message": "^2.0.1",
     "@mobiscroll/cli": "^1.7.3",
     "@mobiscroll/react-lite": "^4.10.9",
     "@reduxjs/toolkit": "^1.8.5",

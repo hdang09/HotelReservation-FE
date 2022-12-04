@@ -38,7 +38,7 @@ const Rooms = () => {
         <Link
           to={`/calendar?room=${roomNumber}`}
           key={roomNumber}
-          className={`min-w-8 h-auto bg-white py-3 px-6 rounded-xl drop-shadow-lg cursor-pointer hover:opacity-60 text-black`}
+          className={`min-w-8 h-auto bg-white dark:bg-slate-800 py-3 px-6 rounded-xl drop-shadow-lg cursor-pointer hover:opacity-60 text-black dark:text-white`}
         >
           <h2 className="font-semibold text-2xl">Room {roomNumber}</h2>
           {/* <h3 className="text-lg font-normal">{isReserved ? 'Reserved' : 'Available'}</h3> */}
@@ -53,7 +53,7 @@ const Rooms = () => {
     for (floor = 1; floor <= NUMS_OF_FLOOR; floor++) {
       list.push(
         <div className="mb-8" key={floor}>
-          <h1 className="text-3xl font-extrabold mb-4">Floor {floor}</h1>
+          <h1 className="text-3xl font-extrabold mb-4 text-black dark:text-white">Floor {floor}</h1>
           <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 md:gap-6">
             {renderRooms()}
           </div>

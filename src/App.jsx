@@ -12,6 +12,15 @@ function App() {
   const [color, setColor] = useLocalStorage('primary-color', '#ffa500');
   document.querySelector(':root').style.setProperty('--primary-color', `${color}`);
 
+  if (
+    localStorage.theme === 'dark' ||
+    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+  ) {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+
   useEffect(() => {
     function start() {
       gapi.auth2.init({

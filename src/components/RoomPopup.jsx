@@ -23,8 +23,8 @@ const RoomPopup = ({ room = {}, handleClose = () => {} }) => {
   };
   return (
     <div className="w-screen h-screen fixed inset-0 z-10 flex justify-center items-center">
-      <div className="absolute w-screen h-screen bg-black opacity-60 z-12"></div>
-      <div className="absolute bg-white p-8 z-14 rounded-lg drop-shadow-lg">
+      <div className="absolute w-screen h-screen bg-black opacity-60 z-12" />
+      <div className="absolute bg-white p-8 z-14 rounded-lg drop-shadow-lg dark:bg-slate-800">
         <button className="float-right" onClick={handleClose}>
           Close
         </button>

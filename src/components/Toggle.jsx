@@ -1,8 +1,19 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Toggle = (props) => {
-  const [clicked, setClicked] = React.useState(false)
+  const isDarkMode =
+    localStorage.theme === 'dark' ||
+    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  const [clicked, setClicked] = React.useState(isDarkMode);
+
+  if (clicked) {
+    document.documentElement.classList.add('dark');
+    localStorage.theme = 'dark';
+  } else {
+    document.documentElement.classList.remove('dark');
+    localStorage.removeItem('theme');
+  }
 
   return (
     <div
@@ -17,9 +28,9 @@ const Toggle = (props) => {
         }`}
       ></div>
     </div>
-  )
-}
+  );
+};
 
-Toggle.propTypes = {}
+Toggle.propTypes = {};
 
-export default Toggle
+export default Toggle;

@@ -41,6 +41,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100%;
+  overflow: overlay;
   /* background-image: url('../src/assets/7480152.png'); */
   /* backdrop-filter: blur(10px); */
 }
@@ -72,13 +73,13 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #eef0f4;
   }
   a:hover {
     color: var(--primary-color);
   }
   button {
     background-color: #f9f9f9;
+    color: black;
   }
 }
 

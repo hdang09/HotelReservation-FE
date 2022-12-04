@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { DateRange } from 'react-date-range';
 import moment from 'moment';
+import { ErrorMessage } from '@hookform/error-message';
 import { Input } from '../components';
 
 import 'react-date-range/dist/styles.css'; // main style file
@@ -11,7 +12,12 @@ import { toast } from 'react-toastify';
 import getDates from '../utils/getDates';
 
 const Reservation = () => {
-  const { control, register, handleSubmit } = useForm();
+  const {
+    control,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const [roomData, setRoomData] = useState({
     roomNumber: undefined,
@@ -150,7 +156,7 @@ const Reservation = () => {
   );
 
   const RenderStatus = () => (
-    <div className="p-2">
+    <div className="p-2 text-black dark:text-white">
       <h2>Status: </h2>
       <div className="m-2">
         <input
@@ -179,9 +185,11 @@ const Reservation = () => {
 
   const PreviewReservation = () => {
     return (
-      <div className="bg-white rounded-lg drop-shadow-lg">
-        <header className="bg-gray-200 text-xl px-4 py-2 font-bold">Your Reservation</header>
-        <div className="px-6 py-4">
+      <div className="bg-white dark:bg-slate-800 rounded-lg drop-shadow-lg">
+        <header className="bg-gray-200 dark:bg-slate-700 text-xl px-4 py-2 font-bold text-black dark:text-white">
+          Your Reservation
+        </header>
+        <div className="px-6 py-4 text-black dark:text-white">
           <div className="mb-2">
             <span className="font-semibold">Room </span>
             <strong>{roomData.roomNumber}</strong>
@@ -211,7 +219,7 @@ const Reservation = () => {
           </div>
         </div>
         <footer className="px-4 py-2 font-bold">
-          <p className="mb-4">
+          <p className="mb-4 text-black dark:text-white">
             Total price: <span className="float-right">${roomData.price || 0}</span>
           </p>
           <input
@@ -235,12 +243,22 @@ const Reservation = () => {
               value={roomData.roomNumber}
               onChange={handleSetRoomNumber}
             />
+            <ErrorMessage
+              errors={errors}
+              name="roomNumber"
+              render={({ message }) => <p>{message}</p>}
+            />
             <Input
               placeholder="Example: Tran Hai Dang"
               label="Fullname"
               {...register('fullname', { required: true })}
               value={roomData.fullname}
               onChange={(e) => setRoomData((prev) => ({ ...prev, fullname: e.target.value }))}
+            />
+            <ErrorMessage
+              errors={errors}
+              name="roomNumber"
+              render={({ message }) => <p>{message}</p>}
             />
             <Input
               label="Identity Card (ID)"
@@ -250,6 +268,11 @@ const Reservation = () => {
               value={roomData.idCard}
               onChange={(e) => setRoomData((prev) => ({ ...prev, idCard: Number(e.target.value) }))}
             />
+            <ErrorMessage
+              errors={errors}
+              name="idCard"
+              render={({ message }) => <p>{message}</p>}
+            />
             <Input
               placeholder="Example: dangtranhai628@gmail.com"
               label="Email"
@@ -258,6 +281,7 @@ const Reservation = () => {
               value={roomData.email}
               onChange={(e) => setRoomData((prev) => ({ ...prev, email: e.target.value }))}
             />
+            <ErrorMessage errors={errors} name="email" render={({ message }) => <p>{message}</p>} />
             <Input
               placeholder="Example: 0123456789"
               label="Phone Number"
@@ -266,6 +290,7 @@ const Reservation = () => {
               value={roomData.phone}
               onChange={(e) => setRoomData((prev) => ({ ...prev, phone: e.target.value }))}
             />
+            <ErrorMessage errors={errors} name="phone" render={({ message }) => <p>{message}</p>} />
             {/* <RenderServices /> */}
             <RenderStatus />
           </div>
@@ -276,7 +301,7 @@ const Reservation = () => {
               render={({ field }) => (
                 <DateRange
                   {...field}
-                  editableDateInputs={true}
+                  showDateDisplay={false}
                   minDate={new Date()}
                   months={2}
                   onChange={(item) => {
@@ -292,6 +317,7 @@ const Reservation = () => {
                   ranges={dateRanges}
                   disabledDates={roomData.disabledDates}
                   endDatePlaceholder="Early"
+                  className="bg-white dark:bg-slate-800"
                 />
               )}
             />

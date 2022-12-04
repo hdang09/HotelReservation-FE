@@ -52,16 +52,16 @@ const Input = forwardRef(
     };
 
     return (
-      <div className="p-2 ">
+      <div className="p-2 text-black dark:text-white">
         {!noLabel && (
-          <label className="block pb-2" htmlFor={label}>
+          <label className="block pb-2 text-black dark:text-white" htmlFor={label}>
             {label}
           </label>
         )}
         {selectRooms ? (
           <select
             id={label}
-            className={`w-full max-w-[20rem] drop-shadow-md py-[0.6rem] px-4 rounded-lg focus:outline-primary ${propClassName}`}
+            className={`w-full max-w-[20rem] drop-shadow-md py-[0.6rem] px-4 rounded-lg focus:outline-primary bg-white dark:bg-slate-800 ${propClassName}`}
             ref={ref}
             {...props}
             defaultValue={'DEFAULT'}
@@ -71,7 +71,7 @@ const Input = forwardRef(
         ) : (
           <input
             id={label}
-            className={`w-full max-w-[20rem] drop-shadow-md py-[0.6rem] px-4 rounded-lg focus:outline-primary ${propClassName}`}
+            className={`w-full max-w-[20rem] drop-shadow-md py-[0.6rem] px-4 rounded-lg focus:outline-primary bg-white dark:bg-slate-800 ${propClassName}`}
             type={type}
             placeholder={placeholder}
             ref={ref}
