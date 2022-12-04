@@ -22,7 +22,7 @@ const Login = () => {
     <>
       <div className="flex justify-center items-center w-screen h-screen bg-white dark:bg-slate-900">
         <div className="flex flex-col bg-white dark:bg-slate-800 text-black dark:text-white justify-center items-center w-[28rem] h-[40rem] rounded-xl bg-white drop-shadow-2xl">
-          <img src="hotel.gif" alt="Hotel" className="mb-6" />
+          <img src="hotel2.gif" alt="Hotel" className="mb-6" />
           <h1 className="text-3xl font-bold mb-2s">Welcome Back!</h1>
           <h2>Sign in to Hotel Management</h2>
           <div className="bg-black dark:bg-white h-0.5 w-4/12 my-8" />
