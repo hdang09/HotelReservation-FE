@@ -4,14 +4,14 @@
 
 <!-- The API for managing a hotel of Mint Hotel. -->
 
-<!-- Here is [the Frontend](https://github.com/hdang09/HotelManagement-FE) that using this API. -->
+Here is [the Backend](https://github.com/hdang09/HotelManagement-BE) that using this API.
 
-Here is [the website](http://hotel-management-three.vercel.app/).
+Here is [the website](http://hotel.hdang09.site/).
 
 ## Technology
 
 - Frontend
-  - React - A JavaScript library for building user interfaces
+  - React Vite - Next Generation Frontend Tooling
 - Backend
   - Express - Server Core
   - Mongoose + Mongo - Database
@@ -20,15 +20,15 @@ Here is [the website](http://hotel-management-three.vercel.app/).
 
 - Trần Hải Đăng (Front-end, Back-end, UI/UX Designer)
 
-<!-- ## Guide
+ ## Guide
 
-You can run this backend by create `.env` file with the content exactly like `.env.example` file then use command
+You can run this front-end by create `.env` file with the content exactly like `.env.example` file then use command
 
 ```
 yarn start
 ```
 
-**Note:** if you want to deploy then replace `[YOUR_DATABASE_URL]` with your database URL. -->
+**Note:** if you want to deploy then replace `[YOUR_API_URL]` with your API URL and `[YOUR_CLIENT_ID]` with your client ID.
 
 # License & copyright
 
