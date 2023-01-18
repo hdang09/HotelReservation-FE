@@ -70,6 +70,18 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+html .date-range .rdrDayNumber span {
+  color: #1d2429;
+}
+
+html.dark .date-range .rdrDayNumber span {
+  color: #fff;
+}
+
+html .date-range .rdrDayDisabled .rdrDayNumber span {
+  color: #aeb9bf;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -82,7 +94,6 @@ button:focus-visible {
     color: black;
   }
 }
-
 /* Scrollbar */
 ::-webkit-scrollbar {
   border-radius: 0;

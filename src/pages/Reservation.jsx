@@ -317,7 +317,7 @@ const Reservation = () => {
                   ranges={dateRanges}
                   disabledDates={roomData.disabledDates}
                   endDatePlaceholder="Early"
-                  className="bg-white dark:bg-slate-800"
+                  className="bg-white dark:bg-slate-800 date-range"
                 />
               )}
             />
