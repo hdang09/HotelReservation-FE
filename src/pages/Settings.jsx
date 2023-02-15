@@ -68,16 +68,16 @@ const Settings = () => {
       <div className="block max-w-[35rem] bg-white dark:bg-slate-800 p-6 rounded-xl drop-shadow-lg m-auto">
         <h1 className="text-2xl font-bold mb-6">Settings</h1>
         <div className="flex justify-center my-4 flex-col">
-          <div className="inline-flex items-center mr-2 font-medium text-black dark:text-white">
+          <div className="inline-flex items-center mr-2 mb-2 font-medium text-black dark:text-white">
             <TbSun /> <h2 className="mx-2">Theme</h2>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between flex-col sm:flex-row">
             {THEMES.map((theme) => {
               const active = theme.isActive ? 'bg-primary text-white' : 'border-primary border-2';
               return (
                 <div
                   key={theme.name}
-                  className={`${active} flex items-center w-[30%] border-dashed px-4 py-2  hover:opacity-80 cursor-pointer`}
+                  className={`${active} flex items-center justify-center w-full sm:w-[30%] border-dashed px-4 py-2 hover:opacity-80 cursor-pointer mb-2 sm:mb-0 rounded`}
                   onClick={theme.onClick}
                 >
                   {theme.icon} <span className="px-2">{theme.name}</span>
@@ -87,17 +87,19 @@ const Settings = () => {
           </div>
         </div>
 
-        <div className="flex items-center my-4">
-          <div className="inline-flex items-center mr-2 font-medium text-black dark:text-white">
+        <div className="flex flex-col sm:flex-row  my-4">
+          <div className="inline-flex items-center justify-start mr-2 font-medium text-black dark:text-white">
             <TbPaint /> <h2 className="mx-2 ">Default color:</h2>
           </div>
-          <input
-            type="color"
-            className="w-10 h-10"
-            value={color}
-            onChange={(e) => setColor(e.target.value)}
-          />
-          <Input noLabel value={color} onChange={(e) => setColor(e.target.value)} />
+          <div className="flex items-center justify-center items-center">
+            <input
+              type="color"
+              className="w-10 h-10"
+              value={color}
+              onChange={(e) => setColor(e.target.value)}
+            />
+            <Input noLabel value={color} onChange={(e) => setColor(e.target.value)} />
+          </div>
         </div>
 
         <div className="flex items-center my-4">

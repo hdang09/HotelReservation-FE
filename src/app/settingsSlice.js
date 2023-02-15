@@ -3,7 +3,7 @@ import isDarkMode from '../utils/isDarkMode';
 
 const initialState = {
   color: JSON.parse(localStorage.getItem('primary-color')) || '#ffa500',
-  theme: isDarkMode,
+  theme: isDarkMode ? 'dark' : 'light',
 };
 
 const settingsSlice = createSlice({
