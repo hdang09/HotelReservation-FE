@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { TbPaint, TbPaintOff, TbSun, TbMoon } from 'react-icons/tb';
 import { RiComputerLine } from 'react-icons/ri';
-import { Input, Toggle } from '../components';
+import { Input } from '../components';
 import { useLocalStorage } from '../hooks';
-
+import { useDispatch } from 'react-redux';
+import { set } from '../app/primaryColorSlice';
 const Settings = () => {
   const [color, setColor] = useLocalStorage('primary-color', '#ffa500');
   const [reRender, setReRender] = useState(false);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     document.querySelector(':root').style.setProperty('--primary-color', `${color}`);
+    dispatch(set(color));
   }, [color]);
 
   const resetDefault = () => setColor('#ffa500');

@@ -10,6 +10,9 @@ module.exports = {
         fade: 'var(--fade-primary-color)',
         current: 'currentColor',
       },
+      opacity: {
+        2: '.2',
+      },
       // backgroundImage: {
       //   home: 'url("./assets/img/bg.png")',
       // },

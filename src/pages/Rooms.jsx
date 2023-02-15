@@ -12,7 +12,6 @@ const NUMS_OF_FLOOR = 8,
 const Rooms = () => {
   const dispatch = useDispatch();
   const rooms = useSelector((state) => state.rooms);
-  const existedRooms = rooms?.map((room) => room.roomNumber);
 
   let list = [],
     item = [],
@@ -38,7 +37,7 @@ const Rooms = () => {
         <Link
           to={`/calendar?room=${roomNumber}`}
           key={roomNumber}
-          className={`min-w-8 h-auto bg-white dark:bg-slate-800 py-3 px-6 rounded-xl drop-shadow-lg cursor-pointer hover:opacity-60 text-black dark:text-white`}
+          className={`min-w-8 h-auto bg-white dark:bg-slate-800 py-3 px-6 rounded-xl drop-shadow-lg cursor-pointer text-black dark:text-white`}
         >
           <h2 className="font-semibold text-2xl">Room {roomNumber}</h2>
           {/* <h3 className="text-lg font-normal">{isReserved ? 'Reserved' : 'Available'}</h3> */}
@@ -66,17 +65,15 @@ const Rooms = () => {
   }, [list]);
 
   return (
-    <>
-      <div className="w-full h-full">
-        {rooms == [] ? (
-          <div className="w-full h-full flex justify-center items-center mt-[-50px]">
-            <PacmanLoader color="var(--primary-color)" />
-          </div>
-        ) : (
-          renderFloors()
-        )}
-      </div>
-    </>
+    <div className="w-full h-full">
+      {rooms.length ? (
+        renderFloors()
+      ) : (
+        <div className="w-full h-full flex justify-center items-center mt-[-50px]">
+          <PacmanLoader color="var(--primary-color)" />
+        </div>
+      )}
+    </div>
   );
 };
 

@@ -6,6 +6,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 
 import { RoomPopup } from '../components';
 import { getSpecificRoom } from '../utils/productAPI';
+import { PacmanLoader } from 'react-spinners';
 
 const Calendar = () => {
   const [events, setEvents] = useState([]);
@@ -48,22 +49,27 @@ const Calendar = () => {
 
   return (
     <>
-      <div className="max-w-[50rem] mx-auto">
-        {/* <EventCalendar events={events} /> */}
-        <FullCalendar
-          defaultView="dayGridMonth"
-          firstDay={1}
-          locale="en"
-          header={{
-            left: ' title',
-            right: 'prev,next',
-          }}
-          themeSystem="Simplex"
-          plugins={[dayGridPlugin]}
-          events={events}
-          eventClick={handleShowEvent}
-        />
-      </div>
+      {events.length ? (
+        <div className="max-w-[50rem] mx-auto md:py-10">
+          <FullCalendar
+            defaultView="dayGridMonth"
+            firstDay={1}
+            locale="en"
+            header={{
+              left: ' title',
+              right: 'prev,next',
+            }}
+            themeSystem="Simplex"
+            plugins={[dayGridPlugin]}
+            events={events}
+            eventClick={handleShowEvent}
+          />
+        </div>
+      ) : (
+        <div className="w-auto h-screen flex justify-center items-center">
+          <PacmanLoader color="var(--primary-color)" />
+        </div>
+      )}
       {Object.keys(popup).length !== 0 && <RoomPopup room={popup} handleClose={handleClose} />}
     </>
   );

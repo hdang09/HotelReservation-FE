@@ -9,9 +9,10 @@ import moreFeature from '../assets/more-feature.png';
 
 import logo from '../assets/logo.png';
 import Logout from './Logout';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signOut } from '../app/authSlice';
 import jwtDecode from 'jwt-decode';
+import { colorSelector } from '../app/primaryColorSlice';
 
 const Sidebar = ({ className: propClassName }) => {
   const dispatch = useDispatch();
