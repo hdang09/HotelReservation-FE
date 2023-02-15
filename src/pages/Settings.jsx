@@ -60,7 +60,7 @@ const Settings = () => {
 
   return (
     <>
-      <div className="block max-w-[35rem] bg-white dark:bg-slate-800 p-4 rounded-xl drop-shadow m-auto">
+      <div className="block max-w-[35rem] bg-white dark:bg-slate-800 p-6 rounded-xl drop-shadow-lg m-auto">
         <h1 className="text-2xl font-bold mb-6">Settings</h1>
         <div className="flex justify-center my-4 flex-col">
           <div className="inline-flex items-center mr-2 font-medium text-black dark:text-white">
@@ -84,7 +84,7 @@ const Settings = () => {
 
         <div className="flex items-center my-4">
           <div className="inline-flex items-center mr-2 font-medium text-black dark:text-white">
-            <TbPaint /> <h2 className="mx-2 ">Change default color:</h2>
+            <TbPaint /> <h2 className="mx-2 ">Default color:</h2>
           </div>
           <input
             type="color"

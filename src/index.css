@@ -137,11 +137,11 @@ html .date-range .rdrDayDisabled .rdrDayNumber span {
   border-color: var(--primary-color);
 }
 
-table tr th,
+/* table tr th,
 table tr td {
   padding: 20px 0;
   text-align: center;
-}
+} */
 
 .fc-button-primary,
 .fc-button-primary:not(:disabled):active,

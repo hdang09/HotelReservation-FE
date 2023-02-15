@@ -118,51 +118,59 @@ const Home = () => {
         Today Availability
       </h1>
 
-      <div className="w-[calc(100vw-32px)] sm:w-full overflow-x-auto bg-white p-6 rounded-lg drop-shadow-lg dark:bg-slate-800">
+      <div className="w-auto sm:w-full overflow-x-auto bg-white p-6 rounded-lg drop-shadow-lg dark:bg-slate-800">
         <table className="text-black dark:text-white w-max lg:w-full">
-          <tr>
-            <th className="p-4 ">Room</th>
-            <th className="p-4">Floor 1</th>
-            <th className="p-4">Floor 2</th>
-            <th className="p-4">Floor 3</th>
-            <th className="p-4">Floor 4</th>
-            <th className="p-4">Floor 5</th>
-            <th className="p-4">Floor 6</th>
-            <th className="p-4">Floor 7</th>
-            <th className="p-4">Floor 8</th>
-          </tr>
-          {reportToday.length
-            ? reportToday.map((item, index) => {
-                return (
-                  <tr
-                    key={item.name}
-                    className={`${index % 2 === 1 && 'bg-gray-100 dark:bg-slate-700'} rounded-lg`}
-                  >
-                    <td>{item.name}</td>
-                    {item.rooms.map((room, idx) => (
-                      <td key={idx}>{room}</td>
-                    ))}
-                  </tr>
-                );
-              })
-            : Array(4)
-                .fill()
-                .map((item, index) => {
+          <thead>
+            <tr>
+              <th className="p-4 ">Room</th>
+              <th className="p-4">Floor 1</th>
+              <th className="p-4">Floor 2</th>
+              <th className="p-4">Floor 3</th>
+              <th className="p-4">Floor 4</th>
+              <th className="p-4">Floor 5</th>
+              <th className="p-4">Floor 6</th>
+              <th className="p-4">Floor 7</th>
+              <th className="p-4">Floor 8</th>
+            </tr>
+          </thead>
+          <tbody>
+            {reportToday.length
+              ? reportToday.map((item, index) => {
                   return (
                     <tr
-                      key={index}
+                      key={item.name}
                       className={`${index % 2 === 1 && 'bg-gray-100 dark:bg-slate-700'} rounded-lg`}
                     >
-                      {Array(9)
-                        .fill()
-                        .map((item2, idx) => (
-                          <td key={idx}>
-                            <Skeleton width="50px" />
-                          </td>
-                        ))}
+                      <td className="py-5 px-4 text-center">{item.name}</td>
+                      {item.rooms.map((room, idx) => (
+                        <td className="py-5 px-4 text-center" key={idx}>
+                          {room}
+                        </td>
+                      ))}
                     </tr>
                   );
-                })}
+                })
+              : Array(4)
+                  .fill()
+                  .map((_, index) => {
+                    return (
+                      <tr
+                        key={index}
+                        className={`${
+                          index % 2 === 1 && 'bg-gray-100 dark:bg-slate-700'
+                        } rounded-lg`}
+                      >
+                        {Array(9)
+                          .fill()
+                          .map((_, idx) => (
+                            <td className="py-5 px-4 text-center" key={idx}>
+                              <Skeleton width="50px" />
+                            </td>
+                          ))}
+                      </tr>
+                    );
+                  })}
+          </tbody>
         </table>
       </div>
     </>

@@ -14,7 +14,7 @@ const Header = () => {
     hour >= 5 && hour < 12 ? 'morning' : hour >= 12 && hour < 18 ? 'afternoon' : 'evening';
 
   return (
-    <div className={`${display} dark:bg-slate-900 justify-between items-center py-5 px-12`}>
+    <div className={`${display} dark:bg-slate-900 justify-between items-center p-6 md:px-12`}>
       <div className="text-black dark:text-white">
         <h1 className="text-3xl font-bold">Good {greetings}!</h1>
         <h3>Welcome back and explore our hotel</h3>

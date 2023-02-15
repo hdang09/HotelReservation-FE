@@ -64,17 +64,7 @@ const Rooms = () => {
     return list;
   }, [list]);
 
-  return (
-    <div className="w-full h-full">
-      {rooms.length ? (
-        renderFloors()
-      ) : (
-        <div className="w-full h-full flex justify-center items-center mt-[-50px]">
-          <PacmanLoader color="var(--primary-color)" />
-        </div>
-      )}
-    </div>
-  );
+  return <div className="w-full h-full">{renderFloors()}</div>;
 };
 
 Rooms.propTypes = {};

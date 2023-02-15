@@ -15,14 +15,16 @@ const DefaultLayout = ({ children }) => {
   return (
     <>
       <div
-        className={`flex w-screen min-h-full dark:bg-slate-900 text-black dark:text-white`}
-        style={{ background: theme === 'light' && color + '33' }}
+        className={`flex w-screen min-h-full bg-white dark:bg-slate-900 text-black dark:text-white`}
       >
         <Sidebar open={open} className={clsx(open && '!block')} />
-        <div className="ml-0 h-screen flex-1 items-start sm:ml-16 md:ml-64 overflow-x-hidden">
+        <div
+          className="pb-16 sm:pb-0 ml-0 h-screen flex-1 items-start sm:ml-16 md:ml-64 overflow-x-hidden"
+          style={{ background: theme === 'light' && color + '33' }}
+        >
           <Header />
           <div
-            className={`w-full min-h-full py-3 px-12 flex-1 dark:bg-slate-900 overflow-x-hidden`}
+            className={`w-full min-h-full py-3 px-6 md:px-12 flex-1 dark:bg-slate-900 overflow-x-hidden`}
           >
             {children}
           </div>
