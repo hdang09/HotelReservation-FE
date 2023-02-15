@@ -12,9 +12,31 @@
     <link rel="icon" href="/logo.png" />
     <link rel="apple-touch-icon" href="/logo.png" />
     <!-- <script src="https://accounts.google.com/gsi/client" async defer></script> -->
+    <style>
+      body {
+        overflow: hidden;
+      }
+
+      .wrapper {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      .wrapper img {
+        max-width: 150px;
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="wrapper">
+        <img src="./logo.png" alt="Mint Hotel" />
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
