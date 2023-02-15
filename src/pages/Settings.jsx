@@ -4,15 +4,16 @@ import { RiComputerLine } from 'react-icons/ri';
 import { Input } from '../components';
 import { useLocalStorage } from '../hooks';
 import { useDispatch } from 'react-redux';
-import { set } from '../app/primaryColorSlice';
+import { setPrimaryColor, setTheme } from '../app/settingsSlice';
+
 const Settings = () => {
   const [color, setColor] = useLocalStorage('primary-color', '#ffa500');
   const [reRender, setReRender] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(setPrimaryColor(color));
     document.querySelector(':root').style.setProperty('--primary-color', `${color}`);
-    dispatch(set(color));
   }, [color]);
 
   const resetDefault = () => setColor('#ffa500');
@@ -26,6 +27,7 @@ const Settings = () => {
         document.documentElement.classList.remove('dark');
         localStorage.theme = 'light';
         setReRender(!reRender);
+        dispatch(setTheme('light'));
       },
     },
     {
@@ -36,6 +38,7 @@ const Settings = () => {
         document.documentElement.classList.add('dark');
         localStorage.theme = 'dark';
         setReRender(!reRender);
+        dispatch(setTheme('dark'));
       },
     },
     {
@@ -51,8 +54,10 @@ const Settings = () => {
           (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
         ) {
           document.documentElement.classList.add('dark');
+          dispatch(setTheme('dark'));
         } else {
           document.documentElement.classList.remove('dark');
+          dispatch(setTheme('light'));
         }
       },
     },

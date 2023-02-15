@@ -12,7 +12,7 @@ import Logout from './Logout';
 import { useDispatch, useSelector } from 'react-redux';
 import { signOut } from '../app/authSlice';
 import jwtDecode from 'jwt-decode';
-import { colorSelector } from '../app/primaryColorSlice';
+import { colorSelector } from '../app/settingsSlice';
 
 const Sidebar = ({ className: propClassName }) => {
   const dispatch = useDispatch();

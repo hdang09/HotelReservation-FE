@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './authSlice';
 import roomReducer from './roomsSlice';
-import primaryColorReducer from './primaryColorSlice';
+import settingsReducer from './settingsSlice';
 
 const store = configureStore({
   reducer: {
     rooms: roomReducer,
     auth: authReducer,
-    color: primaryColorReducer,
+    settings: settingsReducer,
   },
 });
 

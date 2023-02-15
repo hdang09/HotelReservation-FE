@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 
 import { Sidebar, Header } from '../components';
-import { useLocalStorage } from '../hooks';
-import { colorSelector } from '../app/primaryColorSlice';
+import { colorSelector, themeSelector } from '../app/settingsSlice';
 import { useSelector } from 'react-redux';
 
 const DefaultLayout = ({ children }) => {
   const [open, _] = useState(false);
 
   const color = useSelector(colorSelector);
-  const theme = useLocalStorage('theme', 'light')[0];
+  const theme = useSelector(themeSelector);
 
   return (
     <>
@@ -23,9 +22,7 @@ const DefaultLayout = ({ children }) => {
           style={{ background: theme === 'light' && color + '33' }}
         >
           <Header />
-          <div
-            className={`w-full min-h-full py-3 px-6 md:px-12 flex-1 dark:bg-slate-900 overflow-x-hidden`}
-          >
+          <div className={`w-full py-3 px-6 md:px-12 flex-1 dark:bg-slate-900 overflow-x-hidden`}>
             {children}
           </div>
         </div>
