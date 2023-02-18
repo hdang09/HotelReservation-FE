@@ -9,7 +9,7 @@ import { getSpecificRoom } from '../utils/productAPI';
 import { PacmanLoader } from 'react-spinners';
 
 const Calendar = () => {
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState(null);
   const [popup, setPopup] = useState({});
   const roomNumber = new URLSearchParams(window.location.search).get('room');
 
@@ -49,7 +49,7 @@ const Calendar = () => {
 
   return (
     <>
-      {events.length ? (
+      {events ? (
         <div className="max-w-[50rem] mx-auto md:py-10">
           <FullCalendar
             defaultView="dayGridMonth"

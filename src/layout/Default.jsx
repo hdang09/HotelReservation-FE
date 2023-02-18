@@ -10,7 +10,6 @@ const DefaultLayout = ({ children }) => {
 
   const color = useSelector(colorSelector);
   const theme = useSelector(themeSelector);
-  console.log(theme === 'light' && color + '33');
 
   return (
     <>

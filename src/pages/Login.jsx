@@ -1,6 +1,6 @@
 import React from 'react';
 import GoogleLogin from 'react-google-login';
-import { CLIENT_ID } from '../config';
+import config from '../config';
 import hotel from '../assets/hotel.gif';
 import { FcGoogle } from 'react-icons/fc';
 import { login } from '../app/authSlice';
@@ -27,7 +27,7 @@ const Login = () => {
           <h2>Sign in to Hotel Management</h2>
           <div className="bg-black dark:bg-black h-0.5 w-4/12 my-8" />
           <GoogleLogin
-            client_Id={CLIENT_ID}
+            client_Id={config.CLIENT_ID}
             buttonText="Continue with Google"
             onSuccess={onSuccess}
             onFailure={onFailure}

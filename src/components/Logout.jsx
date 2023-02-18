@@ -1,5 +1,5 @@
-import { CLIENT_ID } from '../config';
 import React from 'react';
+import config from '../config';
 import { GoogleLogout } from 'react-google-login';
 import { useDispatch } from 'react-redux';
 import { signOut } from '../app/authSlice';
@@ -12,7 +12,7 @@ const Logout = () => {
   };
   return (
     <GoogleLogout
-      clientId={CLIENT_ID}
+      clientId={config.CLIENT_ID}
       buttonText="Logout"
       onLogoutSuccess={onLogoutSuccess}
       onFailure={(e) => console.log(e)}

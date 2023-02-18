@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { API_URL } from '../config';
+import config from '../config';
 
 export const getRoomsAsync = createAsyncThunk('rooms/getRoomsAsync', async () => {
-  const resp = await fetch(`${API_URL}/rooms`);
+  const resp = await fetch(`${config.API_URL}/rooms`);
   if (resp.ok) {
     const rooms = await resp.json();
     return { rooms };
@@ -11,7 +11,7 @@ export const getRoomsAsync = createAsyncThunk('rooms/getRoomsAsync', async () =>
 
 export const bookRoomAsync = createAsyncThunk('rooms/bookRoomAsync', async (payload) => {
   try {
-    const res = await fetch(`${API_URL}/rooms`, {
+    const res = await fetch(`${config.API_URL}/rooms`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ export const bookRoomAsync = createAsyncThunk('rooms/bookRoomAsync', async (payl
 });
 
 export const updateRoomAsync = createAsyncThunk('rooms/updateRoomAsync', async (payload) => {
-  await fetch(`${API_URL}/rooms`, {
+  await fetch(`${config.API_URL}/rooms`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ export const updateRoomAsync = createAsyncThunk('rooms/updateRoomAsync', async (
 });
 
 export const updateStatusAsync = createAsyncThunk('rooms/updateStatusAsync', async (payload) => {
-  await fetch(`${API_URL}/rooms/${payload.id}`, {
+  await fetch(`${config.API_URL}/rooms/${payload.id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -45,14 +45,14 @@ export const updateStatusAsync = createAsyncThunk('rooms/updateStatusAsync', asy
 });
 
 export const deleteRoomAsync = createAsyncThunk('rooms/deleteRoomAsync', async (payload) => {
-  await fetch(`${API_URL}/rooms/${payload.id}`, {
+  await fetch(`${config.API_URL}/rooms/${payload.id}`, {
     method: 'DELETE',
   });
 });
 
 export const getReportAsync = createAsyncThunk('rooms/getReportAsync', async (payload) => {
   try {
-    const res = await fetch(`${API_URL}/rooms`, {
+    const res = await fetch(`${config.API_URL}/rooms`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

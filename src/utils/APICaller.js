@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { API_URL } from '../config';
+import config from '../config';
 
 export const request = (endpoint, method, headers = {}, params = {}, body = {}) => {
   return axios({
-    url: API_URL + endpoint,
+    url: config.API_URL + endpoint,
     method,
     headers,
     params,

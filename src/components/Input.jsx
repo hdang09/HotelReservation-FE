@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRoomsAsync } from '../app/roomsSlice';
 // import * as actions from '../app/actions'
-
-const NUMS_OF_FLOOR = 8,
-  NUMS_ROOMS_EACH_FLOOR = 12;
+import config from '../config';
 
 const Input = forwardRef(
   (
@@ -31,18 +29,16 @@ const Input = forwardRef(
           Select your room
         </option>
       );
-      for (let i = 1; i <= NUMS_OF_FLOOR; i++) {
+      for (let i = 1; i <= config.NUMS_OF_FLOOR; i++) {
         element.push(
           <option key={i} disabled value="" className="font-bold py-3">
             Floor {i}
           </option>
         );
-        for (let j = 1; j <= NUMS_ROOMS_EACH_FLOOR; j++) {
+        for (let j = 1; j <= config.NUMS_ROOMS_EACH_FLOOR; j++) {
           let roomNumber = i * 100 + j;
-          const isReserved = existedRooms?.includes(roomNumber);
           element.push(
             <option key={roomNumber} value={roomNumber} className="text-center">
-              {/* //disabled={isReserved} */}
               {roomNumber}
             </option>
           );

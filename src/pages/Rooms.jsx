@@ -3,11 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { PacmanLoader } from 'react-spinners';
 import { getRoomsAsync } from '../app/roomsSlice';
 import { Link } from 'react-router-dom';
-
+import config from '../config';
 import { useCallback } from 'react';
-
-const NUMS_OF_FLOOR = 8,
-  NUMS_ROOMS_EACH_FLOOR = 12;
 
 const Rooms = () => {
   const dispatch = useDispatch();
@@ -22,9 +19,8 @@ const Rooms = () => {
   }, [dispatch]);
 
   const renderRooms = useCallback(() => {
-    for (let room = 1; room <= NUMS_ROOMS_EACH_FLOOR; room++) {
+    for (let room = 1; room <= config.NUMS_ROOMS_EACH_FLOOR; room++) {
       let roomNumber = floor * 100 + room;
-      // const isReserved = existedRooms.includes(roomNumber);
       const roomType =
         roomNumber % 100 <= 3
           ? 'Single Room'
@@ -49,7 +45,7 @@ const Rooms = () => {
   }, [item]);
 
   const renderFloors = useCallback(() => {
-    for (floor = 1; floor <= NUMS_OF_FLOOR; floor++) {
+    for (floor = 1; floor <= config.NUMS_OF_FLOOR; floor++) {
       list.push(
         <div className="mb-8" key={floor}>
           <h1 className="text-3xl font-extrabold mb-4 text-black dark:text-white">Floor {floor}</h1>
