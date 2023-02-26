@@ -51,8 +51,8 @@ const privateRoutes = [
 const RouterComponent = () => {
   const dispatch = useDispatch();
   if (localStorage.getItem('token')) {
-    const tokenFromLocal = JSON.stringify(localStorage.getItem('token'));
-    if (jwtDecode(tokenFromLocal).exp < Date.now() / 1000) {
+    const tokenInLocal = JSON.stringify(localStorage.getItem('token'));
+    if (jwtDecode(tokenInLocal).exp < Date.now() / 1000) {
       dispatch(signOut());
     }
   }

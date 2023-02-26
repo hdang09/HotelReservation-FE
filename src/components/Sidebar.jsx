@@ -47,7 +47,7 @@ const Sidebar = ({ className: propClassName }) => {
 
   return (
     <div
-      className={`bottom-0 fixed w-screen sm:w-16 min-h-fit sm:min-h-screen bg-white dark:bg-slate-800 sm:inset-y-0 drop-shadow-lg ease-in md:w-64 z-10 ${propClassName}`}
+      className={`bottom-0 fixed w-screen sm:w-16 min-h-fit sm:min-h-screen bg-white dark:bg-slate-800 sm:inset-y-0 drop-shadow-lg ease-in md:w-64 z-10 overflow-y-auto ${propClassName}`}
     >
       <Link
         to="/"
@@ -92,7 +92,7 @@ const Sidebar = ({ className: propClassName }) => {
 
       <div className="hidden md:block mt-8">
         <img src={moreFeature} alt="" />
-        <div className="flex justify-center flex-col items-center mt-4">
+        <div className="flex justify-center flex-col items-center my-4">
           <h2 className="font-semibold  mb-2">Hi, {name}!</h2>
           <p className="text-center text-sm">
             Need more feature? <br />

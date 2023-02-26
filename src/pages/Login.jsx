@@ -1,22 +1,28 @@
 import React from 'react';
-import GoogleLogin from 'react-google-login';
 import config from '../config';
 import hotel from '../assets/hotel.gif';
 import { FcGoogle } from 'react-icons/fc';
 import { login } from '../app/authSlice';
 import { useDispatch } from 'react-redux';
+import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
 
 const Login = () => {
   const dispatch = useDispatch();
 
   const onSuccess = (response) => {
-    localStorage.setItem('token', JSON.stringify(response.tokenId));
+    console.log(response);
+    localStorage.setItem('token', JSON.stringify(response.credential));
     if (localStorage.getItem('token')) dispatch(login());
   };
 
   const onFailure = (response) => {
     console.log(response);
   };
+
+  const loginGoogle = useGoogleLogin({
+    onSuccess,
+    onFailure,
+  });
 
   return (
     <>
@@ -26,25 +32,14 @@ const Login = () => {
           <h1 className="text-3xl font-bold mb-2s">Welcome Back!</h1>
           <h2>Sign in to Hotel Management</h2>
           <div className="bg-black dark:bg-black h-0.5 w-4/12 my-8" />
-          <GoogleLogin
-            client_Id={config.CLIENT_ID}
-            buttonText="Continue with Google"
-            onSuccess={onSuccess}
-            onFailure={onFailure}
-            cookiePolicy={'single_host_origin'}
-            render={({ disabled, onClick }) => {
-              return (
-                <button
-                  disabled={disabled}
-                  onClick={onClick}
-                  className="flex justify-center items-center transition-all text-primary hover:bg-primary hover:text-white border-1 border-primary hover:border-primary bg-white dark:bg-white dark:hover:bg-primary"
-                >
-                  <FcGoogle />
-                  <span className="ml-3">Continue with Google</span>
-                </button>
-              );
-            }}
-          />
+          <GoogleLogin onSuccess={onSuccess} onError={onFailure} useOneTap auto_select />
+          {/* <button
+            onClick={() => loginGoogle()}
+            className="flex justify-center items-center transition-all text-primary hover:bg-primary hover:text-white border-1 border-primary hover:border-primary bg-white dark:bg-white dark:hover:bg-primary"
+          >
+            <FcGoogle />
+            <span className="ml-3">Continue with Google</span>
+          </button> */}
         </div>
       </div>
     </>
