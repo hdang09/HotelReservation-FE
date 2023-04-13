@@ -9,18 +9,59 @@ import { updateStatus } from '../utils/productAPI';
 import { toast } from 'react-toastify';
 
 const RoomPopup = ({ room = {}, handleClose = () => {} }) => {
-  // const handleEdit = () => {};
-
   const handleChangeStatus = async (status) => {
     try {
-      const res = await updateStatus(room._id, status);
+      await updateStatus(room._id, status);
       handleClose();
-      console.log(res);
     } catch (err) {
       console.error(err);
       toast.error(err.message);
     }
   };
+
+  const ROOM_INFO_LIST = [
+    {
+      Icon: FaSignature,
+      title: 'Fullname',
+      data: room.fullname,
+    },
+    {
+      Icon: HiOutlineIdentification,
+      title: 'ID Card',
+      data: room.idCard,
+    },
+    {
+      Icon: BsTelephone,
+      title: 'Phone',
+      data: room.phone,
+    },
+    {
+      Icon: HiOutlineMail,
+      title: 'E-mail',
+      data: room.email,
+    },
+    {
+      Icon: FiLogIn,
+      title: 'Check-in',
+      data: moment(room.checkIn).format('dddd, DD/MM/YYYY 12:00'),
+    },
+    {
+      Icon: FiLogOut,
+      title: 'Check-out',
+      data: moment(room.checkOut).format('dddd, DD/MM/YYYY 12:00'),
+    },
+    {
+      Icon: HiOutlineStatusOnline,
+      title: 'Status',
+      data: room.status,
+    },
+    {
+      Icon: FiDollarSign,
+      title: 'Price',
+      data: room.price,
+    },
+  ];
+
   return (
     <div className="w-screen h-screen fixed inset-0 z-10 flex justify-center items-center">
       <div className="absolute w-screen h-screen bg-black opacity-60 z-12" />
@@ -28,100 +69,28 @@ const RoomPopup = ({ room = {}, handleClose = () => {} }) => {
         <button className="float-right" onClick={handleClose}>
           Close
         </button>
-        <div key={room._id}>
+        <ul key={room._id}>
           <h1 className="font-bold text-4xl mb-4">Room: {room.roomNumber}</h1>
-          {/* Fullname */}
-          <div className="flex items-center my-2">
-            <div className="w-12 h-12 bg-primary rounded-lg flex justify-center items-center text-2xl mr-3">
-              <FaSignature color="white" />
-            </div>
-            <div className="text-xl">
-              <p>Fullname</p>
-              <p className="font-bold">{room.fullname}</p>
-            </div>
-          </div>
 
-          {/* ID Card */}
-          <div className="flex items-center my-2">
-            <div className="w-12 h-12 bg-primary rounded-lg flex justify-center items-center text-2xl mr-3">
-              <HiOutlineIdentification color="white" />
-            </div>
-            <div className="text-xl">
-              <p>ID Card</p>
-              <p className="font-bold">{room.idCard}</p>
-            </div>
-          </div>
+          {ROOM_INFO_LIST.map(({ Icon, title, data }) => {
+            return (
+              <li className="flex items-center my-2">
+                <div className="w-12 h-12 bg-primary rounded-lg flex justify-center items-center text-2xl mr-3">
+                  <Icon color="white" />
+                </div>
+                <div className="text-xl">
+                  <p>{title}</p>
+                  <p className="font-bold">{data}</p>
+                </div>
+              </li>
+            );
+          })}
 
-          {/* Phone */}
-          <div className="flex items-center my-2">
-            <div className="w-12 h-12 bg-primary rounded-lg flex justify-center items-center text-2xl mr-3">
-              <BsTelephone color="white" />
-            </div>
-            <div className="text-xl">
-              <p>Phone</p>
-              <p className="font-bold">{room.phone}</p>
-            </div>
-          </div>
-
-          {/* E-mail */}
-          <div className="flex items-center my-2">
-            <div className="w-12 h-12 bg-primary rounded-lg flex justify-center items-center text-2xl mr-3">
-              <HiOutlineMail color="white" />
-            </div>
-            <div className="text-xl">
-              <p>E-mail</p>
-              <p className="font-bold">{room.email}</p>
-            </div>
-          </div>
-
-          {/* Check-in */}
-          <div className="flex items-center my-2">
-            <div className="w-12 h-12 bg-primary rounded-lg flex justify-center items-center text-2xl mr-3">
-              <FiLogIn color="white" />
-            </div>
-            <div className="text-xl">
-              <p>Check-in</p>
-              <p className="font-bold">{moment(room.checkIn).format('dddd, DD/MM/YYYY 12:00')}</p>
-            </div>
-          </div>
-
-          {/* Check-out */}
-          <div className="flex items-center my-2">
-            <div className="w-12 h-12 bg-primary rounded-lg flex justify-center items-center text-2xl mr-3">
-              <FiLogOut color="white" />
-            </div>
-            <div className="text-xl">
-              <p>Check-out</p>
-              <p className="font-bold">{moment(room.checkOut).format('dddd, DD/MM/YYYY 12:00')}</p>
-            </div>
-          </div>
-
-          {/* Status */}
-          <div className="flex items-center my-2">
-            <div className="w-12 h-12 bg-primary rounded-lg flex justify-center items-center text-2xl mr-3">
-              <HiOutlineStatusOnline color="white" />
-            </div>
-            <div className="text-xl">
-              <p>Status</p>
-              <p className="font-bold">{room.status}</p>
-            </div>
-          </div>
-
-          {/* Status */}
-          <div className="flex items-center my-2">
-            <div className="w-12 h-12 bg-primary rounded-lg flex justify-center items-center text-2xl mr-3">
-              <FiDollarSign color="white" />
-            </div>
-            <div className="text-xl">
-              <p>Price</p>
-              <p className="font-bold">${room.price}</p>
-            </div>
-          </div>
           {/* <button onClick={handleEdit}>Edit</button> */}
           <button onClick={() => handleChangeStatus('Checked-in')}>Checked-in</button>
           <button onClick={() => handleChangeStatus('Checked-out')}>Checked-out</button>
           <button onClick={() => handleChangeStatus('Canceled')}>Remove</button>
-        </div>
+        </ul>
       </div>
     </div>
   );

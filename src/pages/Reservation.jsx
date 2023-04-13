@@ -10,6 +10,9 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import { bookRoom, getSpecificRoom } from '../utils/productAPI';
 import { toast } from 'react-toastify';
 import getDates from '../utils/getDates';
+import { FaSignature } from 'react-icons/fa';
+import { HiOutlineIdentification, HiOutlineMail, HiOutlineStatusOnline } from 'react-icons/hi';
+import { BsTelephone } from 'react-icons/bs';
 
 const Reservation = () => {
   const {
@@ -76,42 +79,41 @@ const Reservation = () => {
       const { data } = await getSpecificRoom(e.target.value);
       let disabledDates = data.rooms.map((room) => getDates(room.checkIn, room.checkOut)).flat();
       setRoomData((prev) => ({ ...prev, disabledDates }));
-    } catch (e) {
-      toast.error(e.message);
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
     }
   };
 
-  const onSubmit = useCallback(
-    async (data) => {
-      try {
-        const res = await bookRoom({
-          ...roomData,
-          checkIn: roomData.checkIn,
-          checkOut: roomData.checkOut,
-          price,
-        });
-        toast.success(res.data.message);
-        setRoomData({
-          roomNumber: undefined,
-          fullname: '',
-          idCard: '',
-          phone: '',
-          services: {
-            motorbikeRental: false,
-            parking: false,
-          },
-          checkIn: undefined,
-          checkOut: undefined,
-          email: '',
-          status: '',
-        });
-      } catch (err) {
-        console.error(err);
-        toast.error(err.message);
-      }
-    },
-    [roomData]
-  );
+  const onSubmit = useCallback(async () => {
+    try {
+      const res = await bookRoom({
+        ...roomData,
+        checkIn: roomData.checkIn,
+        checkOut: roomData.checkOut,
+        idCard: Number(roomData.idCard),
+        price,
+      });
+      toast.success(res.data.message);
+      setRoomData({
+        roomNumber: undefined,
+        fullname: '',
+        idCard: '',
+        phone: '',
+        services: {
+          motorbikeRental: false,
+          parking: false,
+        },
+        checkIn: undefined,
+        checkOut: undefined,
+        email: '',
+        status: '',
+      });
+    } catch (err) {
+      console.error(err);
+      toast.error(err.message);
+    }
+  }, [roomData]);
 
   const BILL = [
     { name: 'Fullname', details: roomData.fullname },
@@ -156,7 +158,7 @@ const Reservation = () => {
   );
 
   const RenderStatus = () => (
-    <div className="p-2 text-black dark:text-white">
+    <div className="flex flex-col items-center justify-center lg:block p-2 text-black dark:text-white">
       <h2>Status: </h2>
       <div className="m-2">
         <input
@@ -231,99 +233,122 @@ const Reservation = () => {
     );
   };
 
+  const FORM_LIST = [
+    {
+      label: 'Room Number',
+      name: 'roomNumber',
+      isSelectRooms: true,
+      handleChange: handleSetRoomNumber,
+      Icon: <FaSignature />,
+    },
+    {
+      label: 'Fullname',
+      name: 'fullname',
+      placeholder: 'Tran Hai Dang',
+      Icon: <FaSignature />,
+    },
+    {
+      label: 'Identity Card (ID)',
+      name: 'idCard',
+      placeholder: '074212345678',
+      type: 'number',
+      rules: {
+        minLength: 9,
+        maxLength: 12,
+      },
+      Icon: <HiOutlineIdentification />,
+    },
+    {
+      label: 'Email',
+      name: 'email',
+      placeholder: 'dangtranhai628@gmail.com',
+      type: 'email',
+      Icon: <HiOutlineMail />,
+    },
+    {
+      label: 'Phone Number',
+      name: 'phone',
+      placeholder: '0123456789',
+      type: 'number',
+      rules: {
+        minLength: 10,
+        maxLength: 10,
+      },
+      Icon: <BsTelephone />,
+    },
+  ];
+
   return (
     <>
       <div>
-        <form className="grid grid-cols-1 lg:grid-cols-3" onSubmit={handleSubmit(onSubmit)}>
-          <div>
-            <Input
-              selectRooms
-              label="Room Number"
-              {...register('roomNumber', { required: true })}
-              value={roomData.roomNumber}
-              onChange={handleSetRoomNumber}
-            />
-            <ErrorMessage
-              errors={errors}
-              name="roomNumber"
-              render={({ message }) => <p>{message}</p>}
-            />
-            <Input
-              placeholder="Example: Tran Hai Dang"
-              label="Fullname"
-              {...register('fullname', { required: true })}
-              value={roomData.fullname}
-              onChange={(e) => setRoomData((prev) => ({ ...prev, fullname: e.target.value }))}
-            />
-            <ErrorMessage
-              errors={errors}
-              name="roomNumber"
-              render={({ message }) => <p>{message}</p>}
-            />
-            <Input
-              label="Identity Card (ID)"
-              placeholder="Example: 074212345678"
-              type="number"
-              {...register('idCard', { required: true, minLength: 9, maxLength: 12 })}
-              value={roomData.idCard}
-              onChange={(e) => setRoomData((prev) => ({ ...prev, idCard: Number(e.target.value) }))}
-            />
-            <ErrorMessage
-              errors={errors}
-              name="idCard"
-              render={({ message }) => <p>{message}</p>}
-            />
-            <Input
-              placeholder="Example: dangtranhai628@gmail.com"
-              label="Email"
-              type="email"
-              {...register('email', { required: false })}
-              value={roomData.email}
-              onChange={(e) => setRoomData((prev) => ({ ...prev, email: e.target.value }))}
-            />
-            <ErrorMessage errors={errors} name="email" render={({ message }) => <p>{message}</p>} />
-            <Input
-              placeholder="Example: 0123456789"
-              label="Phone Number"
-              type="number"
-              {...register('phone', { required: true, minLength: 10, maxLength: 10 })}
-              value={roomData.phone}
-              onChange={(e) => setRoomData((prev) => ({ ...prev, phone: e.target.value }))}
-            />
-            <ErrorMessage errors={errors} name="phone" render={({ message }) => <p>{message}</p>} />
-            {/* <RenderServices /> */}
-            <RenderStatus />
-          </div>
-          <div>
-            <Controller
-              name="dateRanges"
-              control={control}
-              render={({ field }) => (
-                <DateRange
-                  {...field}
-                  showDateDisplay={false}
-                  minDate={new Date()}
-                  months={2}
-                  onChange={(item) => {
-                    setRoomData({
-                      ...roomData,
-                      checkIn: item.selection.startDate,
-                      checkOut: item.selection.endDate,
-                    });
-                    setDateRanges([item.selection]);
-                    field.onChange(item);
-                  }}
-                  moveRangeOnFirstSelection={false}
-                  ranges={dateRanges}
-                  disabledDates={roomData.disabledDates}
-                  endDatePlaceholder="Early"
-                  className="bg-white dark:bg-slate-800 date-range"
-                />
-              )}
-            />
+        <form
+          className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 "
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <div className="col-span-1 xl:col-span-2 grid grid-cols-1 xl:grid-cols-2">
+            <div>
+              {FORM_LIST.map(({ name, ...item }) => {
+                return (
+                  <React.Fragment key={name}>
+                    <Input
+                      selectRooms={item.isSelectRooms}
+                      label={item.label}
+                      {...register(name, { required: true, ...item.rules })}
+                      value={roomData[name]}
+                      onChange={
+                        item.handleChange ||
+                        ((e) => setRoomData((prev) => ({ ...prev, [name]: e.target.value })))
+                      }
+                      placeholder={item.placeholder}
+                      icon={item.Icon}
+                      type={item.type}
+                    />
+                    <ErrorMessage
+                      errors={errors}
+                      name={name}
+                      render={({ message }) => <p>{message}</p>}
+                    />
+                  </React.Fragment>
+                );
+              })}
+
+              {/* <RenderServices /> */}
+              <RenderStatus />
+            </div>
+            <div className="flex flex-col items-center justify-center lg:block">
+              <label htmlFor="" className="block text-base text-gray-500 dark:text-gray-300 mb-2">
+                Check In - Check Out
+              </label>
+              <Controller
+                name="dateRanges"
+                control={control}
+                render={({ field }) => (
+                  <DateRange
+                    {...field}
+                    showDateDisplay={false}
+                    minDate={new Date()}
+                    months={2}
+                    onChange={(item) => {
+                      setRoomData({
+                        ...roomData,
+                        checkIn: item.selection.startDate,
+                        checkOut: item.selection.endDate,
+                      });
+                      setDateRanges([item.selection]);
+                      field.onChange(item);
+                    }}
+                    moveRangeOnFirstSelection={false}
+                    ranges={dateRanges}
+                    disabledDates={roomData.disabledDates}
+                    endDatePlaceholder="Early"
+                    className="bg-white dark:bg-slate-800 date-range"
+                  />
+                )}
+              />
+            </div>
           </div>
 
-          <div className="py-3 px-6 sm:px-12">
+          <div className="py-3 px-6 max-w-md">
             <PreviewReservation />
           </div>
         </form>

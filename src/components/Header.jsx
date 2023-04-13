@@ -1,5 +1,4 @@
 import React from 'react';
-import { Input } from './';
 import jwt_decode from 'jwt-decode';
 
 const Header = () => {
@@ -19,7 +18,7 @@ const Header = () => {
         <h1 className="text-3xl font-bold">Good {greetings}!</h1>
         <h3>Welcome back and explore our hotel</h3>
       </div>
-      {/* <Input noLabel className="hidden w-[25rem] lg:block" /> */}
+      {/* <Input className="hidden w-[25rem] lg:block" /> */}
       <div className="hidden sm:flex items-center">
         <img src={token.picture} className="w-10 h-10 rounded-full mr-2" />
         <div>

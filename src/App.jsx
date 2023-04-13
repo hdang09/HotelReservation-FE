@@ -7,15 +7,13 @@ import { useLocalStorage } from './hooks';
 import '@fullcalendar/core/main.css';
 import '@fullcalendar/daygrid/main.css';
 import '@fullcalendar/timegrid/main.css';
+import isDarkMode from './utils/isDarkMode';
 
 function App() {
-  const [color, _] = useLocalStorage('primary-color', '#ffa500');
+  const [color] = useLocalStorage('primary-color', '#ffa500');
   document.querySelector(':root').style.setProperty('--primary-color', `${color}`);
 
-  if (
-    localStorage.theme === 'dark' ||
-    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-  ) {
+  if (isDarkMode) {
     document.documentElement.classList.add('dark');
   } else {
     document.documentElement.classList.remove('dark');

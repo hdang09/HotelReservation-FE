@@ -1,10 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import isDarkMode from '../utils/isDarkMode';
 
-const Toggle = (props) => {
-  const isDarkMode =
-    localStorage.theme === 'dark' ||
-    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+const Toggle = () => {
   const [clicked, setClicked] = React.useState(isDarkMode);
 
   if (clicked) {
@@ -30,7 +27,5 @@ const Toggle = (props) => {
     </div>
   );
 };
-
-Toggle.propTypes = {};
 
 export default Toggle;

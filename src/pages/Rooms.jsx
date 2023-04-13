@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { PacmanLoader } from 'react-spinners';
+import { useDispatch } from 'react-redux';
 import { getRoomsAsync } from '../app/roomsSlice';
 import { Link } from 'react-router-dom';
 import config from '../config';
@@ -8,7 +7,6 @@ import { useCallback } from 'react';
 
 const Rooms = () => {
   const dispatch = useDispatch();
-  const rooms = useSelector((state) => state.rooms);
 
   let list = [],
     item = [],

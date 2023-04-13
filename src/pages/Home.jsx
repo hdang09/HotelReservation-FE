@@ -14,7 +14,7 @@ const Home = () => {
   const [reportToday, setReportToday] = useState([]);
 
   useEffect(() => {
-    const fn = async () => {
+    const receiveReport = async () => {
       try {
         const res = await getReport();
         setReport(res.data.report);
@@ -23,9 +23,9 @@ const Home = () => {
         console.error(err);
       }
     };
-    fn();
+    receiveReport();
 
-    const fn2 = async () => {
+    const receiveTodayAvail = async () => {
       try {
         const res = await getTodayAvailability();
         setReportToday(res.data.report);
@@ -33,19 +33,16 @@ const Home = () => {
         console.error(err);
       }
     };
-    fn2();
+    receiveTodayAvail();
   }, []);
 
   const valid = (number, isCurrent = false) => {
-    if (typeof number !== 'number') {
-      if (isCurrent) {
-        return <Skeleton width="10px" inline />;
-      } else {
-        return <Skeleton width="20px" />;
-      }
-    }
+    if (typeof number === 'number') return number;
 
-    return number;
+    if (isCurrent) {
+      return <Skeleton width="10px" inline />;
+    }
+    return <Skeleton width="20px" />;
   };
 
   const ROOMS = [

@@ -20,8 +20,8 @@ const Login = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center w-screen h-screen bg-white dark:bg-white">
-        <div className="flex flex-col bg-white dark:bg-white text-black dark:text-black justify-center items-center w-[28rem] h-[40rem] rounded-xl bg-white drop-shadow-2xl">
+      <div className="flex justify-center items-center w-screen h-screen bg-gray-100 dark:bg-white">
+        <div className="flex flex-col dark:bg-white text-black dark:text-black justify-center items-center w-[28rem] h-[40rem] rounded-xl bg-white drop-shadow-2xl">
           <img src={hotel} alt="Hotel" className="mb-6" />
           <h1 className="text-3xl font-bold mb-2s">Welcome Back!</h1>
           <h2>Sign in to Hotel Management</h2>

@@ -5,6 +5,7 @@ import { Input } from '../components';
 import { useLocalStorage } from '../hooks';
 import { useDispatch } from 'react-redux';
 import { setPrimaryColor, setTheme } from '../app/settingsSlice';
+import isDarkMode from '../utils/isDarkMode';
 
 const Settings = () => {
   const [color, setColor] = useLocalStorage('primary-color', '#ffa500');
@@ -49,10 +50,7 @@ const Settings = () => {
         localStorage.removeItem('theme');
         setReRender(!reRender);
 
-        if (
-          localStorage.theme === 'dark' ||
-          (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-        ) {
+        if (isDarkMode) {
           document.documentElement.classList.add('dark');
           dispatch(setTheme('dark'));
         } else {
@@ -91,14 +89,14 @@ const Settings = () => {
           <div className="inline-flex items-center justify-start mr-2 font-medium text-black dark:text-white">
             <TbPaint /> <h2 className="mx-2 ">Default color:</h2>
           </div>
-          <div className="flex items-center justify-center items-center">
+          <div className="flex items-center justify-center">
             <input
               type="color"
               className="w-10 h-10"
               value={color}
               onChange={(e) => setColor(e.target.value)}
             />
-            <Input noLabel value={color} onChange={(e) => setColor(e.target.value)} />
+            <Input value={color} onChange={(e) => setColor(e.target.value)} />
           </div>
         </div>
 
