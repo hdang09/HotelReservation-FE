@@ -86,9 +86,9 @@ const Home = () => {
   return (
     <>
       <h1 className="text-2xl font-bold mb-6 text-black dark:text-white">Dashboard</h1>
-      <div className="grid grid-cols-1 gap-3 lg:grid-cols-4 lg:gap-6">
+      <ul className="grid grid-cols-1 gap-3 lg:grid-cols-4 lg:gap-6">
         {ROOMS.map((room, idx) => (
-          <div
+          <li
             key={room.type}
             className={`flex justify-between w-full min-h-[6rem] rounded-lg drop-shadow-lg bg-white dark:bg-slate-800 p-4 ${room.color}`}
           >
@@ -110,9 +110,9 @@ const Home = () => {
             >
               {room.icon}
             </div>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
 
       <h1 className="text-2xl font-bold mt-10 mb-6 text-black dark:text-white">
         Today Availability

@@ -46,7 +46,7 @@ const Sidebar = ({ className: propClassName }) => {
   ];
 
   return (
-    <div
+    <aside
       className={`bottom-0 fixed w-screen sm:w-16 min-h-fit sm:min-h-screen bg-white dark:bg-slate-800 sm:inset-y-0 drop-shadow-lg ease-in md:w-64 z-10 ${propClassName}`}
     >
       <Link
@@ -107,7 +107,7 @@ const Sidebar = ({ className: propClassName }) => {
           </a>
         </div>
       </div>
-    </div>
+    </aside>
   );
 };
 

@@ -71,20 +71,20 @@ const Settings = () => {
           <div className="inline-flex items-center mr-2 mb-2 font-medium text-black dark:text-white">
             <TbSun /> <h2 className="mx-2">Theme</h2>
           </div>
-          <div className="flex justify-between flex-col sm:flex-row">
+          <ul className="flex justify-between flex-col sm:flex-row">
             {THEMES.map((theme) => {
               const active = theme.isActive ? 'bg-primary text-white' : 'border-primary border-2';
               return (
-                <div
+                <li
                   key={theme.name}
                   className={`${active} flex items-center justify-center w-full sm:w-[30%] border-dashed px-4 py-2 hover:opacity-80 cursor-pointer mb-2 sm:mb-0 rounded`}
                   onClick={theme.onClick}
                 >
                   {theme.icon} <span className="px-2">{theme.name}</span>
-                </div>
+                </li>
               );
             })}
-          </div>
+          </ul>
         </div>
 
         <div className="flex flex-col sm:flex-row  my-4">

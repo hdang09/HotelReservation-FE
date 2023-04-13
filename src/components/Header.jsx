@@ -14,7 +14,7 @@ const Header = () => {
     hour >= 5 && hour < 12 ? 'morning' : hour >= 12 && hour < 18 ? 'afternoon' : 'evening';
 
   return (
-    <div className={`${display} dark:bg-slate-900 justify-between items-center p-6 md:px-12`}>
+    <header className={`${display} dark:bg-slate-900 justify-between items-center p-6 md:px-12`}>
       <div className="text-black dark:text-white">
         <h1 className="text-3xl font-bold">Good {greetings}!</h1>
         <h3>Welcome back and explore our hotel</h3>
@@ -22,9 +22,12 @@ const Header = () => {
       {/* <Input noLabel className="hidden w-[25rem] lg:block" /> */}
       <div className="hidden sm:flex items-center">
         <img src={token.picture} className="w-10 h-10 rounded-full mr-2" />
-        <h2>{token.name}</h2>
+        <div>
+          <h2 className="font-bold">{token.given_name}</h2>
+          <p>Receptionist</p>
+        </div>
       </div>
-    </div>
+    </header>
   );
 };
 

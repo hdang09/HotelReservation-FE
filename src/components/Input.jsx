@@ -20,7 +20,6 @@ const Input = forwardRef(
     ref
   ) => {
     const rooms = useSelector((state) => state.rooms);
-    const existedRooms = rooms?.map((room) => room.roomNumber);
 
     const renderRoomsOption = () => {
       let element = [];
