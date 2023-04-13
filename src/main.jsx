@@ -8,14 +8,12 @@ import './index.css';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import config from './config';
-import { GoogleOAuthProvider } from '@react-oauth/google';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
+  // <React.StrictMode>
   <Provider store={store}>
-    <GoogleOAuthProvider clientId={config.CLIENT_ID}>
-      <App />
-    </GoogleOAuthProvider>
+    <App />
     <ToastContainer position="bottom-right" />
   </Provider>
+  // </React.StrictMode>
 );

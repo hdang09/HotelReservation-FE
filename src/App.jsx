@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
+import { gapi } from 'gapi-script';
 import RouterComponent from './routers';
+import config from './config';
 import { useLocalStorage } from './hooks';
 
 import '@fullcalendar/core/main.css';
@@ -19,6 +21,16 @@ function App() {
     document.documentElement.classList.remove('dark');
   }
 
+  useEffect(() => {
+    function start() {
+      gapi.auth2.init({
+        clientId: config.CLIENT_ID,
+        scope: '',
+      });
+    }
+
+    gapi.load('client:auth2', start);
+  }, []);
   return <RouterComponent />;
 }
 
