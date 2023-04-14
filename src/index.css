@@ -142,7 +142,8 @@ table tr td {
 
 .fc-button-primary,
 .fc-button-primary:not(:disabled):active,
-.fc-button-primary:not(:disabled).fc-button-active {
+.fc-button-primary:not(:disabled).fc-button-active,
+.fc-unthemed td.fc-today {
   color: #fff;
   background-color: var(--primary-color);
   border-color: var(--primary-color);

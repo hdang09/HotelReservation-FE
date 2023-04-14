@@ -99,8 +99,8 @@ const Sidebar = ({ className: propClassName }) => {
             Please contact admin
           </p>
           <a
-            // href="https://github.com/hdang09"
-            href="https://facebook.com/hdang.09"
+            href="https://github.com/hdang09"
+            target="_blank"
             className="py-1 px-4 mt-4 bg-primary text-white rounded-lg hover:bg-white hover:text-primary border-2 border-primary"
           >
             Contact
