@@ -24,7 +24,7 @@ const Login = () => {
         <div className="flex flex-col dark:bg-white text-black dark:text-black justify-center items-center w-[28rem] h-[40rem] rounded-xl bg-white drop-shadow-2xl">
           <img src={hotel} alt="Hotel" className="mb-6" />
           <h1 className="text-3xl font-bold mb-2s">Welcome Back!</h1>
-          <h2>Sign in to Hotel Management</h2>
+          <h2>Sign in to Mint Hotel</h2>
           <div className="bg-black dark:bg-black h-0.5 w-4/12 my-8" />
           <GoogleLogin
             client_Id={config.CLIENT_ID}
