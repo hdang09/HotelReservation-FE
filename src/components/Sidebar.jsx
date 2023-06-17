@@ -1,18 +1,16 @@
-import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { AiOutlineHome, AiOutlineAppstore, AiFillAppstore, AiFillHome } from 'react-icons/ai';
-import { MdHotelClass, MdOutlineHotelClass } from 'react-icons/md';
-import { IoLogOutOutline } from 'react-icons/io5';
-import { IoLogOut } from 'react-icons/io5';
+import { AiFillAppstore, AiFillHome, AiOutlineAppstore, AiOutlineHome } from 'react-icons/ai';
 import { BsGear, BsGearFill } from 'react-icons/bs';
-import moreFeature from '../assets/more-feature.png';
+import { Link, NavLink } from 'react-router-dom';
+import { MdHotelClass, MdOutlineHotelClass } from 'react-icons/md';
 
-import logo from '../assets/logo.png';
+import { IoLogOut } from 'react-icons/io5';
+import { IoLogOutOutline } from 'react-icons/io5';
 import Logout from './Logout';
-import { useDispatch, useSelector } from 'react-redux';
-import { signOut } from '../app/authSlice';
 import jwtDecode from 'jwt-decode';
-import { colorSelector } from '../app/settingsSlice';
+import logo from '../assets/logo.png';
+import moreFeature from '../assets/more-feature.png';
+import { signOut } from '../app/authSlice';
+import { useDispatch } from 'react-redux';
 
 const Sidebar = ({ className: propClassName }) => {
   const dispatch = useDispatch();

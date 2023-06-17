@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react';
+import 'react-loading-skeleton/dist/skeleton.css';
+
+import { getReport, getTodayAvailability } from '../utils/productAPI';
+import { useEffect, useState } from 'react';
+
 import { AiFillAppstore } from 'react-icons/ai';
 import { FiLogOut } from 'react-icons/fi';
 import { MdHotelClass } from 'react-icons/md';
-import { getReport, getTodayAvailability } from '../utils/productAPI';
 import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
 import { toast } from 'react-toastify';
 
 const Home = () => {

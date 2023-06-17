@@ -1,6 +1,7 @@
-import { Outlet, Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Navigate, Outlet } from 'react-router-dom';
+
 import { authSelector } from '../app/authSlice';
+import { useSelector } from 'react-redux';
 
 const PublicRouters = () => {
   const isAuthenticated = useSelector(authSelector);

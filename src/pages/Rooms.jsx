@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { getRoomsAsync } from '../app/roomsSlice';
 import { Link } from 'react-router-dom';
 import config from '../config';
+import { getRoomsAsync } from '../app/roomsSlice';
 import { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 const Rooms = () => {
   const dispatch = useDispatch();

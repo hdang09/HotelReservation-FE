@@ -1,8 +1,7 @@
-import React from 'react';
-import config from '../config';
 import { GoogleLogout } from 'react-google-login';
-import { useDispatch } from 'react-redux';
+import config from '../config';
 import { signOut } from '../app/authSlice';
+import { useDispatch } from 'react-redux';
 
 const Logout = () => {
   const dispatch = useDispatch();

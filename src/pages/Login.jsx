@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
+import { FcGoogle } from 'react-icons/fc';
 import GoogleLogin from 'react-google-login';
 import config from '../config';
 import hotel from '../assets/hotel.gif';
-import { FcGoogle } from 'react-icons/fc';
 import { login } from '../app/authSlice';
 import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 const Login = () => {
   const dispatch = useDispatch();

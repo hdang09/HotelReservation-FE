@@ -1,12 +1,11 @@
-import React from 'react';
-
-import { FaSignature } from 'react-icons/fa';
-import { HiOutlineIdentification, HiOutlineMail, HiOutlineStatusOnline } from 'react-icons/hi';
-import { BsTelephone } from 'react-icons/bs';
 import { FiDollarSign, FiLogIn, FiLogOut } from 'react-icons/fi';
+import { HiOutlineIdentification, HiOutlineMail, HiOutlineStatusOnline } from 'react-icons/hi';
+
+import { BsTelephone } from 'react-icons/bs';
+import { FaSignature } from 'react-icons/fa';
 import moment from 'moment';
-import { updateStatus } from '../utils/productAPI';
 import { toast } from 'react-toastify';
+import { updateStatus } from '../utils/productAPI';
 
 const RoomPopup = ({ room = {}, handleClose = () => {} }) => {
   const handleChangeStatus = async (status) => {

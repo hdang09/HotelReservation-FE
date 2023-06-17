@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
-import { TbPaint, TbPaintOff, TbSun, TbMoon } from 'react-icons/tb';
-import { RiComputerLine } from 'react-icons/ri';
-import { Input } from '../components';
-import { useLocalStorage } from '../hooks';
-import { useDispatch } from 'react-redux';
+import { TbMoon, TbPaint, TbPaintOff, TbSun } from 'react-icons/tb';
 import { setPrimaryColor, setTheme } from '../app/settingsSlice';
+import { useEffect, useState } from 'react';
+
+import { Input } from '../components';
+import { RiComputerLine } from 'react-icons/ri';
 import isDarkMode from '../utils/isDarkMode';
+import { useDispatch } from 'react-redux';
+import { useLocalStorage } from '../hooks';
 
 const Settings = () => {
   const [color, setColor] = useLocalStorage('primary-color', '#ffa500');

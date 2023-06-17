@@ -1,11 +1,12 @@
-import { Home, Reservation, Rooms, Settings, Calendar, Login } from '../pages';
+import { Calendar, Home, Login, Reservation, Rooms, Settings } from '../pages';
+import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+
+import Default from '../layout/Default';
 import PrivateRouters from './PrivateRouters';
 import PublicRouters from './PublicRouters';
-import Default from '../layout/Default';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { signOut } from '../app/authSlice';
 import jwtDecode from 'jwt-decode';
+import { signOut } from '../app/authSlice';
+import { useDispatch } from 'react-redux';
 
 const publicRoutes = [
   {

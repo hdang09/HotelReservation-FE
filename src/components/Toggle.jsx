@@ -1,8 +1,8 @@
-import React from 'react';
 import isDarkMode from '../utils/isDarkMode';
+import { useState } from 'react';
 
 const Toggle = () => {
-  const [clicked, setClicked] = React.useState(isDarkMode);
+  const [clicked, setClicked] = useState(isDarkMode);
 
   if (clicked) {
     document.documentElement.classList.add('dark');

@@ -1,18 +1,19 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import { DateRange } from 'react-date-range';
-import moment from 'moment';
-import { ErrorMessage } from '@hookform/error-message';
-import { Input } from '../components';
-
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-import { bookRoom, getSpecificRoom } from '../utils/productAPI';
-import { toast } from 'react-toastify';
-import getDates from '../utils/getDates';
-import { FaSignature } from 'react-icons/fa';
+
+import { Controller, useForm } from 'react-hook-form';
 import { HiOutlineIdentification, HiOutlineMail, HiOutlineStatusOnline } from 'react-icons/hi';
+import { bookRoom, getSpecificRoom } from '../utils/productAPI';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+
 import { BsTelephone } from 'react-icons/bs';
+import { DateRange } from 'react-date-range';
+import { ErrorMessage } from '@hookform/error-message';
+import { FaSignature } from 'react-icons/fa';
+import { Input } from '../components';
+import getDates from '../utils/getDates';
+import moment from 'moment';
+import { toast } from 'react-toastify';
 
 const Reservation = () => {
   const {

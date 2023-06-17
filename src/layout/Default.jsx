@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import clsx from 'clsx';
-
-import { Sidebar, Header } from '../components';
+import { Header, Sidebar } from '../components';
 import { colorSelector, themeSelector } from '../app/settingsSlice';
+
+import clsx from 'clsx';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 
 const DefaultLayout = ({ children }) => {
   const [open, _] = useState(false);
