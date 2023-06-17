@@ -1,8 +1,6 @@
-import React from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { AiFillAppstore } from 'react-icons/ai';
-import { FiLogIn, FiLogOut } from 'react-icons/fi';
+import { FiLogOut } from 'react-icons/fi';
 import { MdHotelClass } from 'react-icons/md';
 import { getReport, getTodayAvailability } from '../utils/productAPI';
 import Skeleton from 'react-loading-skeleton';
@@ -12,6 +10,11 @@ import { toast } from 'react-toastify';
 const Home = () => {
   const [report, setReport] = useState({});
   const [reportToday, setReportToday] = useState([]);
+
+  // Set document title
+  useEffect(() => {
+    document.title = 'Mint Hotel';
+  }, []);
 
   useEffect(() => {
     const receiveReport = async () => {

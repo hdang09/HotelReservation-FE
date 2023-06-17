@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect } from 'react';
 import GoogleLogin from 'react-google-login';
 import config from '../config';
 import hotel from '../assets/hotel.gif';
@@ -8,6 +8,11 @@ import { useDispatch } from 'react-redux';
 
 const Login = () => {
   const dispatch = useDispatch();
+
+  // Set document title
+  useEffect(() => {
+    document.title = 'Login | Mint Hotel';
+  }, []);
 
   const onSuccess = (response) => {
     localStorage.setItem('token', JSON.stringify(response.tokenId));

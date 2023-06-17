@@ -1,4 +1,4 @@
-import { Home, Reservation, Rooms, Cleaning, Settings, Calendar, Login } from '../pages';
+import { Home, Reservation, Rooms, Settings, Calendar, Login } from '../pages';
 import PrivateRouters from './PrivateRouters';
 import PublicRouters from './PublicRouters';
 import Default from '../layout/Default';
@@ -30,11 +30,6 @@ const privateRoutes = [
     name: 'Rooms',
     element: <Rooms />,
     path: '/rooms',
-  },
-  {
-    name: 'Cleaning',
-    element: <Cleaning />,
-    path: '/cleaning',
   },
   {
     name: 'Settings',

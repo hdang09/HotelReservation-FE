@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TbPaint, TbPaintOff, TbSun, TbMoon } from 'react-icons/tb';
 import { RiComputerLine } from 'react-icons/ri';
 import { Input } from '../components';
@@ -11,6 +11,11 @@ const Settings = () => {
   const [color, setColor] = useLocalStorage('primary-color', '#ffa500');
   const [reRender, setReRender] = useState(false);
   const dispatch = useDispatch();
+
+  // Set document title
+  useEffect(() => {
+    document.title = 'Settings | Mint Hotel';
+  }, []);
 
   useEffect(() => {
     dispatch(setPrimaryColor(color));

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { DateRange } from 'react-date-range';
 import moment from 'moment';
@@ -51,6 +51,11 @@ const Reservation = () => {
         : 0,
     [roomData.roomNumber]
   );
+
+  // Set document title
+  useEffect(() => {
+    document.title = 'Reservation | Mint Hotel';
+  }, []);
 
   const MILISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
   let start = useMemo(() => roomData.checkIn, [roomData.checkIn]);

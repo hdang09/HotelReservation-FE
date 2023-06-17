@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 // import EventCalendar from 'react-awesome-calendar';
 
 import FullCalendar from '@fullcalendar/react';
@@ -12,6 +12,11 @@ const Calendar = () => {
   const [events, setEvents] = useState(null);
   const [popup, setPopup] = useState({});
   const roomNumber = new URLSearchParams(window.location.search).get('room');
+
+  // Set document title
+  useEffect(() => {
+    document.title = 'Calendar | Mint Hotel';
+  }, []);
 
   useEffect(() => {
     (async () => {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getRoomsAsync } from '../app/roomsSlice';
 import { Link } from 'react-router-dom';
@@ -11,6 +11,11 @@ const Rooms = () => {
   let list = [],
     item = [],
     floor;
+
+  // Set document title
+  useEffect(() => {
+    document.title = 'Rooms | Mint Hotel';
+  }, []);
 
   useEffect(() => {
     dispatch(getRoomsAsync());
