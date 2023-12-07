@@ -4,7 +4,7 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import { Controller, useForm } from 'react-hook-form';
 import { HiOutlineIdentification, HiOutlineMail, HiOutlineStatusOnline } from 'react-icons/hi';
 import { bookRoom, getSpecificRoom } from '../utils/productAPI';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { BsTelephone } from 'react-icons/bs';
 import { DateRange } from 'react-date-range';
